@@ -22,8 +22,18 @@
 */
 
  Route::get('/', [HomeController::class,'home']);
+ Route::get('/form', [HomeController::class,'form']);
+ Route::post('/store', [HomeController::class,'store']);
+
  Route::get('/researcher/list', [ResearcherController::class, 'researcher']);
+ Route::get('/researcher/form', [ResearcherController::class, 'researcherForm']);
+ Route::post('/researcher/store', [ResearcherController::class, 'store'])->name('researcher.store');
+
  Route::get('/project/list', [ProjectController::class, 'project']);
+ Route::get('/project/form', [ProjectController::class, 'projectForm']);
+
+
+
  Route::get('/paper/list', [PaperController::class, 'paper']);
  Route::get('/report/list', [ReportController::class, 'report']);
  Route::get('/sponsor/list', [SponsorController::class, 'sponsor']);
