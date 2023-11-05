@@ -32,7 +32,8 @@
       </td>
     </tr>
     @endforeach
- 
   </tbody>
 </table>
+{{$researchers -> links()}}
+
 @endsection

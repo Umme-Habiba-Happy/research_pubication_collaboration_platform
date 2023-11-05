@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Researcher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ResearcherController extends Controller
 {
     public function researcher(){
-        $researchers=Researcher::all();
+        $researchers=Researcher::paginate(3);
        return view ('Admin.pages.researcher.list', compact('researchers'));
     }
     public function researcherForm(){
@@ -17,6 +19,20 @@ class ResearcherController extends Controller
     }
 
     public function store(Request $request){
+
+        $validate = Validator::make($request->all(),[
+            'researcher_name' =>'required',
+            'researcher_field' => 'required',
+            'email' => 'required',
+            'contact' => 'required',
+            'affiliation' => 'required',
+            'research_interest' => 'required'
+
+        ]);
+        if($validate-> fails())
+        {
+            return redirect()-> back()->withErrors($validate);
+        }
         Researcher::create(
             [
                 'researcher_name' => $request ->researcher_name,
@@ -28,7 +44,7 @@ class ResearcherController extends Controller
 
             ]
             );
-            return redirect() -> back();
+            return redirect() -> route('researcher.list');
 
     }
 
