@@ -16,9 +16,7 @@
 
             <!-- log in-->
  
-            <a href="{{url('/form')}}" class="btn btn-info">
-                
-            Log in</a>
+            <a href="{{route('admin.login')}}" class="btn btn-info">Log in</a>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -26,7 +24,7 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li > <a href="{{route('admin.logout')}} " class="dropdown-item" >Log out</a></li>
                     </ul>
                 </li>
             </ul>
