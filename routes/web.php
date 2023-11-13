@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\HomeController;
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\UsersController;
+use App\Http\controllers\FrontendHomeController;
 
  use Illuminate\Support\Facades\Route;
- use App\Http\controllers\HomeController;
  use App\Http\controllers\Backend\UserController;
 
- use App\Http\controllers\ResearcherController;
- use App\Http\controllers\ProjectController;
- use App\Http\controllers\PaperController;
- use App\Http\controllers\CategoryController;
- use App\Http\controllers\ReportController;
- use App\Http\controllers\SponsorController;
+ use App\Http\controllers\Backend\ResearcherController;
+ use App\Http\controllers\Backend\ProjectController;
+ use App\Http\controllers\Backend\PaperController;
+ use App\Http\controllers\Backend\CategoryController;
+ use App\Http\controllers\Backend\ReportController;
+ use App\Http\controllers\Backend\SponsorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,16 +26,27 @@ use App\Http\Controllers\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
- Route::get('admin/login', [UserController::class,'loginForm'])->name('admin.login');
+//frontend routes
 
- Route::post('login/store', [UserController::class,'loginStore'])->name('login.store');
+Route::get('/',[FrontendHomeController::class, 'home'])->name('homepage');
+
+
+//admin routes
+Route::group(['prefix'=> 'admin'],function(){
+   Route::get('admin/login', [UserController::class,'loginForm'])->name('admin.login');
+
+   Route::post('login/store', [UserController::class,'loginStore'])->name('login.store');
  Route::group(['middleware'=> 'auth'],function(){
 
     Route::get('admin/logout', [UserController::class,'logout'])->name('admin.logout');
     Route::get('/', [HomeController::class,'home'])->name('dashboard');
 
-    Route::get('/admin/list' , [AdminController::class, 'admin'])->name('admin.list');
+    Route::get('/users/list' , [ UserController::class, 'list'])->name('users.list');
+    Route::get('/users/form',[UserController::class, 'form'])->name('users.form');
+    Route::post('/users/store',[UserController::class, 'store'])->name('users.store');
+
     Route::get('/role/list' , [RoleController::class, 'role'])->name('role.list');
+    Route::get('/role/form' , [RoleController::class, 'form'])->name('role.form');
 
 
     Route::get('/researcher/list', [ResearcherController::class, 'researcher'])->name('researcher.list');
@@ -60,3 +73,6 @@ use App\Http\Controllers\AdminController;
     Route::get('/category/form', [CategoryController::class, 'categoryForm'])->name('catgeory.form');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
  });
+
+});
+ 
