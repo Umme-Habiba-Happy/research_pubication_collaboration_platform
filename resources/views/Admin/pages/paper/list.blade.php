@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('content')
 <h1>Paper</h1>
-<a class="btn btn-info" href="/paper/form">Add Paper</a>
+<a class="btn btn-info" href="{{route('paper.form')}}">Add Paper</a>
 <table class="table">
   <thead class="thead-dark">
     <tr>

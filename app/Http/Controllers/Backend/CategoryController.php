@@ -17,14 +17,14 @@ class CategoryController extends Controller
         return view ('Admin.pages.category.form');
     }
     public function store(Request $request){
-        $validate = Validator($request->all(),[
-            'categoryName'=>'requierd',
-            'categoryDescription'=>'required'
+        // $validate = Validator($request->all(),[
+        //     'categoryName'=>'requierd',
+        //     'categoryDescription'=>'required'
 
-        ]);
-        if($validate->fails()){
-            return redirect()->back()->withErrors($validate);
-        }
+        // ]);
+        // if($validate->fails()){
+        //     return redirect()->back()->withErrors($validate);
+        // }
         Category::create(
             [
                 'categoryName'=>$request->category_name,

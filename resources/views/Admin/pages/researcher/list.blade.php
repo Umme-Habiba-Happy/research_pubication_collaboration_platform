@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('content')
 <h1>Researcher</h1>
-<a href="/researcher/form" class="btn btn-info">Enter New Researcher</a>
+<a href="{{route('researcher.form')}}" class="btn btn-info">Enter New Researcher</a>
 <table class="table table-dark">
   <thead>
     <tr>

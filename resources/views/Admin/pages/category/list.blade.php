@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('content')
 <h1>category</h1>
-<a class="btn btn-info" href="/category/form">Create Category</a>
+<a class="btn btn-info" href="{{route('category.form')}}">Create Category</a>
 <table class="table table-dark">
   <thead>
     <tr>
@@ -16,7 +16,13 @@
     <tr>
       <th scope="row">{{$key+1}}</th>
       <td>{{$category->categoryName}}</td>
-      <td>{{$category->categoryDescription}}</td>
+      <td>{{$category->categoryDescription}}</td>             
+      <td>
+        <a class="btn btn-success" href="">Edit</a>
+        <a class="btn btn-warning" href="">View</a>
+        <a class="btn btn-danger" href="">Update</a>
+
+      </td>
     </tr>
   @endforeach
   </tbody>

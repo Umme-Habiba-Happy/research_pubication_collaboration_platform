@@ -22,6 +22,11 @@
     <input required name="password"  type="password" class="form-control" id="exampleInputEmail1"  placeholder="Enter pass">
 
   </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Role</label>
+    <input required name="role"  type="text" class="form-control" id="exampleInputEmail1"  placeholder="Enter your role">
+
+  </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Choose Image</label>

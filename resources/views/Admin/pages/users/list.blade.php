@@ -13,18 +13,29 @@
       <th scope="col">#id</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-      <th scope="col">image</th>      
+      <th scope="col">Role</th>
+      <th scope="col">image</th> 
+      <th scope="col">Action</th>
+     
 
     </tr>
   </thead>
   <tbody>
-@foreach($users as $key=> $ad)
+@foreach($users as $key=> $item)
 <tr>
       <th scope="row">{{$key+1}}</th>
-      <td>{{$ad->name}}</td>
-      <td>{{$ad->email}}</td>
+      <td>{{$item->name}}</td>
+      <td>{{$item->email}}</td>
+      <td>{{$item->role}}</td>
+
       <td>
-        <img width="20%"  src="{{url('/uploads/'. $ad->image)}} " alt="image">
+        <img width="20%"  src="{{url('/uploads/'. $item->image)}} " alt="image">
+      </td>
+      <td>
+        <a class="btn btn-success" href="{{route('users.edit', $item->id)}}">Edit</a>
+        <a class="btn btn-warning" href="">View</a>
+        <a class="btn btn-danger" href="{{route('users.delete', $item->id)}}">Delete</a>
+
       </td>
 </tr>
 

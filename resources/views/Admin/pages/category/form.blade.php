@@ -15,7 +15,7 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Category Description</label>
-    <input required name="category_description" type="textarea" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+    <input  name="category_description" type="textarea" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter description">
     
     @error('categoryDescription')
   <div class="alert alert-danger">{{$message}}</div>

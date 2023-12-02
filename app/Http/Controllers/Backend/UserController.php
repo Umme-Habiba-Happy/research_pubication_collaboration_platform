@@ -42,7 +42,10 @@ class UserController extends Controller
     }
     public function form(){
              return view('Admin.pages.users.form');
+
     }
+    
+
 
     public function store(Request $request){
         
@@ -61,11 +64,55 @@ class UserController extends Controller
             'name'=>$request->user_name,
             'email'=>$request->email,
             'password'=>bcrypt($request->password) ,
+            'role'=>$request ->role,
             'image'=>$fileName
 
             ]
       );
       return redirect() -> route('users.list');
+    }
+    public function delete($id){
+        $users = User::find($id);
+        if($users){
+            $users-> delete();
+        }
+
+        return redirect()->back();
+    }
+    public function edit($id){
+        $users = User::find($id);
+        return view('admin.pages.users.editForm',compact('users'));
+
+    }
+
+    public function update(Request $request, $id){
+       // dd($request->all());
+       $users = User::find($id);
+
+       if($users){
+        $fileName = $users->image;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('/uploads', $fileName);
+ 
+ 
+        }
+       $users->update([
+            
+ 
+            'name'=>$request->user_name,
+            'email'=>$request->email,
+            'password'=>bcrypt($request->password) ,
+            'role'=>$request ->role,
+            'image'=>$fileName
+ 
+            ]);
+
+        return redirect() -> route('users.list');
+
+       }
+       
     }
 
 

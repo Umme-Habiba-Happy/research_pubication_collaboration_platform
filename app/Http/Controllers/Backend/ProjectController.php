@@ -30,8 +30,8 @@ class ProjectController extends Controller
         }
        Project::create (
         [
-            'name' => $request -> project_name,
-            'description' => $request -> project_description,
+            'name' => $request -> name,
+            'description' => $request -> description,
             'start_date' => $request -> start_date,
             'end_date' => $request -> end_date,
             'budget' => $request -> budget
