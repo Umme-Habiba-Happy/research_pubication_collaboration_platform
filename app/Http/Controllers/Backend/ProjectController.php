@@ -1,46 +1,55 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use App\Models\Project;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
 
     public function project(){
-        $projects=Project::paginate(3);
+        $projects=Post::with('category')->paginate(3);
         return view ('Admin.pages.project.list',compact('projects'));
     }
     public function projectForm(){
-        return view ('Admin.pages.project.form');
+
+        $categories=Category::all();
+        return view ('Admin.pages.project.form', compact('categories'));
     }
     public function store(Request $request){
 
-        $validate = Validator::make($request->all(),[
-            'name' =>'required',
-            'description' =>'required',
-            'start_date' =>'required',
-            'end_date' =>'required',
-            'budget' => 'required'
-        ]);
-        if($validate->fails()){
-         return redirect()->back()->withErrors($validate);
-        }
-       Project::create (
+        //dd($request->all());
+            $validate = Validator::make($request->all(),[
+                'title' =>'required',
+                'description' =>'required',
+                'author_name' =>'required',
+                'category_id' =>'required',
+                'file' => 'required'
+            ]);
+            if($validate->fails()){
+            // notify()->error("validation failed!");
+            return redirect()->back()->withErrors($validate);
+            }
+
+        // dd($request->all());
+       Post::create (
         [
-            'name' => $request -> name,
+            'title' => $request -> title,
             'description' => $request -> description,
-            'start_date' => $request -> start_date,
-            'end_date' => $request -> end_date,
-            'budget' => $request -> budget
-
-
+            'author_name' => $request -> author_name,
+            'category_id' => $request -> category_id,
+            'file' => $request -> file,
         ]
         
         );
         return redirect() -> route('project.list');
 
+    }
+
+    public function viewPost(){
+        return view ('Admin.pages.project.viewPost');
     }
 }

@@ -1,7 +1,8 @@
 @extends('frontend.master')
 @section('content')
-
-    
+<form action ="{{route('profile.update', auth()->user()->id)}}"  method = "post" enctype="multipart/form-data">
+  @csrf
+  @method('put')
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card">
@@ -9,7 +10,12 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h3>{{auth()->user()->name}}</h3>
+                    <div class="form-group">
+    <input value="{{auth()->user()->name}}" name="user_name"  type="text" class="form-control">
+
+  </div>
+                      <h3>
+                      
                       <div>
                         <hr>
                       </div>
@@ -26,7 +32,7 @@
                       <h5 class="mb-0">Full Name</h5>
                     </div>
                     <div class="col-sm-6 text-secondary">
-                      <h4>{{auth()->user()->name}}</h4>
+    <input value="{{auth()->user()->name}}" name="full_name"  type="text" class="form-control">
                     </div>
                   </div>
                   <hr>
@@ -35,18 +41,26 @@
                       <h5 class="mb-0">Email</h5>
                     </div>
                     <div class="col-sm-6 text-secondary">
-                      <h4>{{auth()->user()->email}}</h4>
+                    <input name="email" value="{{auth()->user()->email}}" type="text">
                     </div>
                   </div>
                   <hr>
                   
-                
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h5 class="mb-0">Password</h5>
+                    </div>
+                    <div class="col-sm-6 text-secondary">
+                    <input name="password" value=" {{auth()->user()->password}}" type="password"> 
+                    </div>
+                  </div>
+                  <hr>
                   <div class="row">
                     <div class="col-sm-3">
                       <h5 class="mb-0">Role</h5>
                     </div>
                     <div class="col-sm-6 text-secondary">
-                      <h4>{{auth()->user()->role}}</h4>
+                    <input value=" {{auth()->user()->role}}" type="text"> 
                     </div>
                   </div>
                 
@@ -62,15 +76,10 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="{{route('edit', auth()->user()->id)}}">Edit</a>
-                    
-                <a class="btn btn-info " href="{{route('researcher.post')}}">My   Post</a>
+                        <button type="submit" class="btn btn-info">Submit</button>
                     </div>
                   </div>
-
                 </div>
-        
-
-              
+</form>
 
 @endsection

@@ -1,8 +1,10 @@
+@extends('frontend.master')
+
 <div class="container">
    <div class="row">
     <div class="research clearfix">
-	 <h4 class="text-center">WE HAVE RESEARCHER</h4>
-	 <h1 class="text-center">Biggest Research Platform</h1>
+	 <h4 class="text-center">WE HAVE SCIENCE OFFICERS</h4>
+	 <h1 class="text-center">Biggest Medical Formation</h1>
 	</div>
 	<div class="research_1 clearfix">
 	  <div class="col-sm-4">

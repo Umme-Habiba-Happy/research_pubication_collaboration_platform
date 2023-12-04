@@ -14,11 +14,18 @@
 
 @auth
 <a class="btn btn-info" href="{{route('user.logout')}}"><i class=""></i>Logout</a>
-<a href="{{route('profile')}}">{{auth()->user()->name}}</a>
+<a href="{{route('Profile')}}">{{auth()->user()->name}}</a>
 @endauth
+
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	<ul class="nav navbar-nav navbar-right">
+	
+		<form action="{{route('search')}} " method = "get">
+					<input type="text" placeholder="search">
+					<button class="btn btn-info" type="submit">Search</button>
+		</form>
+
 		<li><a class="color_1 active_1" href="{{route('homepage')}}">Home</a></li>
 		<li><a class="color_1" href="{{route('sponsor')}}">Sponsor</a></li>
 		

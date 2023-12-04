@@ -37,6 +37,8 @@ use App\Http\Controllers\Frontend\FrontendResearchController;
 //frontend routes
 
 Route::get('/home',[FrontendHomeController::class, 'home'])->name('homepage');
+Route::get('/search',[FrontendHomeController::class, 'search'])->name('search');
+
 Route::get('/slider', [FrontendHomeController::class, 'slider'])->name('slider');
 Route::get('/login',[FrontendUserController::class, 'login'])->name('user.login');
 Route::post('/dologin',[FrontendUserController::class, 'doLogin'])->name('user.do-login');
@@ -46,6 +48,8 @@ Route::get('/registration',[FrontendUserController::class, 'registration'])->nam
 Route::post('/registration',[FrontendUserController::class, 'doRegistration'])->name('user.do-registration');
 
 
+
+
 Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
 Route::get('/',[MasterController::class, 'master'])->name('master');
 Route::get('/sponsor',[FrontendSponsorController::class, 'sponsor'])->name('sponsor');
@@ -53,7 +57,13 @@ Route::get('/sponsor',[FrontendSponsorController::class, 'sponsor'])->name('spon
 Route::group(['middleware'=> 'auth'], function(){
 
 Route::get('/logout', [FrontendUserController::class, 'logout'])->name('user.logout');
-Route::get('/profile', [FrontendUserController::class, 'profile'])->name('profile');
+Route::get('/profile', [FrontendUserController::class, 'profile'])->name('Profile');
+Route::get('/edit/{id}',[FrontendUserController::class, 'edit'])->name('edit');
+Route::put('/profile/update/{id}',[FrontendUserController::class, 'update'])->name('profile.update');
+Route::get('/mypost', [FrontendUserController::class,'mypost'])->name('researcher.post');
+Route::get('/mypost/form', [FrontendUserController::class,'postForm'])->name('researcher.post.form');
+Route::post('/mypost/store', [FrontendUserController::class,'postStore'])->name('researcher.postStore');
+
 
 Route::get('/research' , [FrontendResearchController::class, 'research'])->name('research');
 Route::get('/singleResearchView', [FrontendResearchController::class, 'singleResearch'])->name('singleResearchView');
@@ -95,6 +105,8 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/project/list', [ProjectController::class, 'project'])->name('project.list');
     Route::get('/project/form', [ProjectController::class, 'projectForm'])->name('project.form');
     Route::post('/project/store', [ProjectController::class, 'store'])->name('project.store');
+    Route::get('/project/view', [ProjectController::class, 'viewPost'])->name('project.viewPost');
+
    
     Route::get('/paper/list', [PaperController::class, 'paper'])->name('paper.list');
     Route::get('/paper/form', [PaperController::class, 'paperForm'])->name('paper.form');
