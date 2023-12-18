@@ -15,6 +15,7 @@
       <th scope="col">Email</th>
       <th scope="col">Role</th>
       <th scope="col">image</th> 
+
       <th scope="col">Action</th>
      
 
@@ -28,10 +29,12 @@
       <td>{{$item->email}}</td>
       <td>{{$item->role}}</td>
 
+
       <td>
         <img width="20%"  src="{{url('/uploads/'. $item->image)}} " alt="image">
       </td>
       <td>
+
         <a class="btn btn-success" href="{{route('users.edit', $item->id)}}">Edit</a>
         <a class="btn btn-warning" href="">View</a>
         <a class="btn btn-danger" href="{{route('users.delete', $item->id)}}">Delete</a>

@@ -8,13 +8,14 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                  <input type="file" value="{{ auth()->user()->image }}" class="from-control"
+                    alt="upload Image" class="rounded-circle" width="150" name="image">
                     <div class="mt-3">
                     <div class="form-group">
     <input value="{{auth()->user()->name}}" name="user_name"  type="text" class="form-control">
 
   </div>
-                      <h3>
+                    
                       
                       <div>
                         <hr>
@@ -48,35 +49,74 @@
                   
                   <div class="row">
                     <div class="col-sm-3">
-                      <h5 class="mb-0">Password</h5>
+                      <h5 class="mb-0">Degree</h5>
                     </div>
                     <div class="col-sm-6 text-secondary">
-                    <input name="password" value=" {{auth()->user()->password}}" type="password"> 
+                    <input name="degree" value="{{auth()->user()->degree}}" type="text"> 
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h5 class="mb-0">Role</h5>
+                      <h5 class="mb-0">Position</h5>
                     </div>
                     <div class="col-sm-6 text-secondary">
-                    <input value=" {{auth()->user()->role}}" type="text"> 
+                    <input name="position" value="{{auth()->user()->position}}" type="text"> 
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h5 class="mb-0">Institution</h5>
+                    </div>
+                    <div class="col-sm-6 text-secondary">
+                    <input name="institution" value="{{auth()->user()->institution}}" type="text"> 
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h5 class="mb-0">Department</h5>
+                    </div>
+                    <div class="col-sm-6 text-secondary">
+                    <input name="department" value="{{auth()->user()->department}}" type="text"> 
                     </div>
                   </div>
                 
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h5 class="mb-0">Address</h6>
+                      <h5 class="mb-0">Skills</h5>
                     </div>
                     <div class="col-sm-6 text-secondary">
-                      Bay Area, San Francisco, CA
+                    <input name="skills" value="{{auth()->user()->skills}}" type="text"> 
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h5 class="mb-0">Address</h5>
+                    </div>
+                    <div class="col-sm-6 text-secondary">
+                    <input name="address" value="{{auth()->user()->address}}" type="text"> 
                     </div>
                   </div>
                   <hr>
                   <div class="row">
+                    <div class="col-sm-3">
+                      <h5 class="mb-0">Country</h5>
+                    </div>
+                    <div class="col-sm-6 text-secondary">
+                    <input name="country" value="{{auth()->user()->country}}" type="text"> 
+                    </div>
+                  </div>
+                  <hr>
+                  
+                  <div class="row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="submit" class="btn btn-info">Update Profile</button>
                     </div>
                   </div>
                 </div>

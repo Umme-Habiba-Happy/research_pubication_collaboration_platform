@@ -12,7 +12,6 @@
     <tr>
       <th scope="col">#id</th>
       <th scope="col">Research Title</th>
-      <th scope="col">Author Name</th>
       <th scope="col">Category</th>
       <th scope="col">File</th>
       <th scope="col">Status</th> 
@@ -27,15 +26,14 @@
   <tr>
       <th scope="row">{{$key+1}}</th>
       <td >{{$project->title}}</td>
-      <td>{{$project->author_name}}</</td>
       <td>{{$project->category->categoryName}}</</td>
       <td>{{$project->file}}</</td>
-      <td>pending</td>
+      <td>{{$project->status}}</td>
 
 
       <td>
         <a class="btn btn-success" href="">Edit</a>
-        <a class="btn btn-warning" href="">View</a>
+        <a class="btn btn-warning" href="{{route('researcher.post.view',$project->id  )}}">View</a>
 
       </td>    
    </tr>

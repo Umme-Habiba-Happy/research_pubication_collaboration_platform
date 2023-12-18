@@ -19,14 +19,14 @@
     @foreach($researchers as $key=> $researcher)
     <tr>
       <th scope="row">{{$key+1}}</th>
-      <td>{{$researcher->researcher_name}}</td>
+      <td>{{$researcher->name}}</td>
       <td>{{$researcher->researcher_field}}</td>
       <td>{{$researcher->email}}</td>
       <td>{{$researcher->contact}}</td>
       <td>{{$researcher->affiliation}}</td>
       <td>{{$researcher->research_interest}}</td>
       <td>
-        <a class="btn btn-success">Edit</a>
+        <a class="btn btn-success" href="{{route('researcher.edit', $researcher->id)}}">Edit</a>
         <a class="btn btn-danger">Delete</a>
 
       </td>
@@ -34,6 +34,5 @@
     @endforeach
   </tbody>
 </table>
-{{$researchers -> links()}}
 
 @endsection

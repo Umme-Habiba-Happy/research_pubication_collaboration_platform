@@ -20,18 +20,20 @@
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	<ul class="nav navbar-nav navbar-right">
-	
-		<form action="{{route('search')}} " method = "get">
-					<input type="text" placeholder="search">
-					<button class="btn btn-info" type="submit">Search</button>
-		</form>
+
+		<form action="{{route('search')}}" method="get">
+                        <input type="text" class="form-control" placeholder="Search for research .." name="search">
+                        <button type="submit" class="btn btn-info">Search</button>
+                    </form>
+
+					
 
 		<li><a class="color_1 active_1" href="{{route('homepage')}}">Home</a></li>
-		<li><a class="color_1" href="{{route('sponsor')}}">Sponsor</a></li>
+		<!-- <li><a class="color_1" href="{{route('sponsor')}}">Sponsor</a></li> -->
 		
 		<!-- <li ><a class=" color_1" href="blog.html">Category</a></li> -->
 		<li><a class=" color_1" href="{{route('research')}}">Research</a></li>
-		<li><a class="color_1" href="gallery.html">Research Apply</a></li>
+		<!-- <li><a class="color_1" href="gallery.html">Research Apply</a></li> -->
 		<li><a class="color_1" href="contact.html">Paper</a></li>
 		<li class="dropdown">
 			<a class="dropdown-toggle color_1" data-toggle="dropdown">Category<b class="caret"></b></a>

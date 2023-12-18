@@ -17,10 +17,16 @@ return new class extends Migration
 
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('role')->nullable();
-
+            $table->string('degree')->nullable();
+            $table->string('position')->nullable();
+            $table->string('institution')->nullable();
+            $table->string('department')->nullable();
+            $table->string('skills')->nullable();
+            $table->string('address')->nullable();
+            $table->string('country')->nullable();
             $table->string('image')->nullable();
             
             $table->timestamp('email_verified_at')->nullable();

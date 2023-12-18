@@ -7,7 +7,9 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Download;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\Return_;
 
 class FrontendUserController extends Controller
 {
@@ -17,6 +19,21 @@ class FrontendUserController extends Controller
         return view('frontend.pages.user.profile');
     }
 
+    public function userProfile(){
+        //dd('Hello Profile');
+        return view('frontend.pages.user.userProfile');
+    }
+    public function stats(){
+        //dd('Hello Profile');
+       
+        return view('frontend.pages.user.stats');
+    }
+    public function userResearch(){
+        //dd('Hello Profile');
+        $projects= Post::all();
+        return view('frontend.pages.user.researchInfo',compact('projects'));
+    }
+
 
     public function edit($id){
         $users = User::find($id);
@@ -24,43 +41,57 @@ class FrontendUserController extends Controller
          
     }
 
-    public function mypost(){
-    
-        $projects=Post::paginate(10);
+    // public function mypostList(){
+     
+    //     $projects=Post::where('researcher_id', '=' , auth()->user()->id)->get();
 
-        return view('frontend.pages.user.postList', compact('projects'));
-    }
-    public function postForm(){
-        $categories=Category::all();
+    //     // dd($projects);
 
-        return view('frontend.pages.user.postForm', compact('categories'));
-        return redirect()->route('researcher.post');
+    //     return view('frontend.pages.user.postList', compact('projects'));
+    // }
 
-    }
-    public function postStore(Request $request){
+    // public function mypostView($id){
+    //     $project = Post::find($id);
 
-        // dd($request->all());
-        $fileName = null;
-        if($request->hasFile('file')){
-            $file = $request->file('file');
-            $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
-            $file->storeAs('/uploads', $fileName);
-        }
-        //dd($fileName);
+    //     return view('frontend.pages.user.postView',compact('project'));
+    // }
+    // public function postForm(){
+    //     $categories=Category::all();
 
-        //dd($request);
+    //     return view('frontend.pages.user.postForm', compact('categories'));
+    //     return redirect()->route('researcher.post');
 
-        Post::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'author_name'=>$request->author_name,
-            'category_id'=>$request ->category_id,
-            'file'=>$fileName
-            ]);
+    // }
+    // public function resubmit(){
+    //     $categories=Category::all();
+    //     return view('frontend.pages.user.resubmitForm',compact('categories'));
+    //     return redirect()->route('researcher.post');
+
+    // }
+    // public function postStore(Request $request){
+
+    //     // dd($request->all());
+    //     $fileName = null;
+    //     if($request->hasFile('file')){
+    //         $file = $request->file('file');
+    //         $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
+    //         $file->storeAs('/uploads', $fileName);
+    //     }
+    //     //dd($fileName);
+
+    //     //dd($request);
+
+    //     Post::create([
+    //         'title'=>$request->title,
+    //         'description'=>$request->description,
+    //         'researcher_id'=>auth()->user()->id,
+    //         'category_id'=>$request ->category_id,
+    //         'file'=>$fileName
+    //         ]);
 
         
-            return redirect()->route('researcher.post');
-    }
+    //         return redirect()->route('researcher.post');
+    // }
 
     public function update(Request $request, $id){
         //dd($request->all());
@@ -80,20 +111,29 @@ class FrontendUserController extends Controller
         // dd('error');
 
   
-        //  $fileName = null;
-        //  if($request->hasFile('file')){
-        //      $file = $request->file('file');
-        //      $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
-        //      $file->storeAs('/uploads', $fileName);
-        //  }
-        $users->update([
-            
+         $fileName = auth()->user()->image;
+         if($request->hasFile('file')){
+             $file = $request->file('file');
+             $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
+             $file->storeAs('/user/image', $fileName);
+         }
+        $users->update([            
             'name'=>$request->full_name,
             'email'=>$request->email,
-            'password' =>$request->password,
+            'degree' =>$request->degree,
+            'position' =>$request->position,
+            'institution' =>$request->institution,
+            'department' =>$request->department,
+            'skills' =>$request->skills,
+            'address' =>$request->address,
+            'country' =>$request->country,
+            'image'=> $fileName,
+       
             
-        ]);        
-        return redirect()->back();
+        ]);    
+       // dd($request->all());
+    
+        return redirect()->route('Profile');
     }
 
 
@@ -106,14 +146,25 @@ class FrontendUserController extends Controller
 
     public function doRegistration(Request $request){
         //dd($request->all());
+        $fileName = null;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('/user/image', $fileName);
+        }
         User::create(
-            [
-            
-
+            [            
             'name'=>$request->name,
             'email'=>$request->email,
             'role'=>'researcher',
-
+            'degree' =>'BCSE',
+            'position' =>'student',
+            'institution' =>'iubat',
+            'department' =>'CSE',
+            'skills' =>'data science',
+            'address' =>'dhaka',
+            'country' =>'Bangladesh', 
+            'image' => $fileName,
             'password'=>bcrypt($request->password)
 
             ]

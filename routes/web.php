@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Frontend\FrontendPostController;
 use App\Http\Controllers\Frontend\FrontendUserController;
 use App\Http\Controllers\Frontend\FrontendResearchController;
 
@@ -23,6 +25,10 @@ use App\Http\Controllers\Frontend\FrontendResearchController;
  use App\Http\controllers\Backend\ReportController;
  use App\Http\controllers\Backend\SponsorController;
  use App\Http\Controllers\Frontend\MasterController;
+
+
+ //download function
+ 
 
 /*
 |--------------------------------------------------------------------------
@@ -60,13 +66,37 @@ Route::get('/logout', [FrontendUserController::class, 'logout'])->name('user.log
 Route::get('/profile', [FrontendUserController::class, 'profile'])->name('Profile');
 Route::get('/edit/{id}',[FrontendUserController::class, 'edit'])->name('edit');
 Route::put('/profile/update/{id}',[FrontendUserController::class, 'update'])->name('profile.update');
-Route::get('/mypost', [FrontendUserController::class,'mypost'])->name('researcher.post');
-Route::get('/mypost/form', [FrontendUserController::class,'postForm'])->name('researcher.post.form');
-Route::post('/mypost/store', [FrontendUserController::class,'postStore'])->name('researcher.postStore');
+Route::get('/profile/profile', [FrontendUserController::class, 'userProfile'])->name('profile.profile');
+Route::get('/profile/research', [FrontendUserController::class, 'userResearch'])->name('profile.research');
+Route::get('/profile/stats', [FrontendUserController::class, 'stats'])->name('profile.stats');
+
+// Route::get('/mypost', [FrontendUserController::class,'mypostList'])->name('researcher.post');
+// Route::get('/mypost/view/{id}', [FrontendUserController::class,'mypostView'])->name('researcher.post.view');
+
+// Route::get('/mypost/form', [FrontendUserController::class,'postForm'])->name('researcher.post.form');
+// Route::post('/mypost/store', [FrontendUserController::class,'postStore'])->name('researcher.postStore');
+// Route::get('/resubmit/form', [FrontendUserController::class,'resubmit'])->name('resubmit.form');
+
+Route::get('/mypost', [FrontendPostController::class,'mypostList'])->name('researcher.post');
+Route::get('/mypost/view/{id}', [FrontendPostController::class,'mypostView'])->name('researcher.post.view');
+
+Route::get('/mypost/form', [FrontendPostController::class,'postForm'])->name('researcher.post.form');
+Route::post('/mypost/store', [FrontendPostController::class,'postStore'])->name('researcher.postStore');
+Route::get('/resubmit/form', [FrontendPostController::class,'resubmit'])->name('resubmit.form');
+
 
 
 Route::get('/research' , [FrontendResearchController::class, 'research'])->name('research');
-Route::get('/singleResearchView', [FrontendResearchController::class, 'singleResearch'])->name('singleResearchView');
+// Assuming 'research' is the URI segment for your research routes
+
+Route::get('/research/{id}', [FrontendResearchController::class, 'singleResearch'])->name('singleResearchView');
+//for download 
+Route::get('/research/download/{id}', [FrontendResearchController::class, 'single_research_download'])->name('single.research.download');
+
+
+
+
+
 Route::get('/secondResearch', [FrontendResearchController::class, 'secondResearch'])->name('secondResearchView');
 Route::get('/thirdResearch', [FrontendResearchController::class, 'thirdResearch'])->name('thirdResearchView');
 
@@ -101,11 +131,28 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/researcher/list', [ResearcherController::class, 'researcher'])->name('researcher.list');
     Route::get('/researcher/form', [ResearcherController::class, 'researcherForm'])->name('researcher.form');
     Route::post('/researcher/store', [ResearcherController::class, 'store'])->name('researcher.store');
-   
-    Route::get('/project/list', [ProjectController::class, 'project'])->name('project.list');
-    Route::get('/project/form', [ProjectController::class, 'projectForm'])->name('project.form');
-    Route::post('/project/store', [ProjectController::class, 'store'])->name('project.store');
-    Route::get('/project/view', [ProjectController::class, 'viewPost'])->name('project.viewPost');
+    Route::get('/researcher/edit/{id}', [ResearcherController::class, 'edit'])->name('researcher.edit');
+    Route::put('/researcher/update/{id}', [ResearcherController::class, 'update'])->name('researcher.update');
+
+    // Route::get('/project/list', [ProjectController::class, 'project'])->name('project.list');
+    // Route::get('/project/form', [ProjectController::class, 'projectForm'])->name('project.form');
+    // Route::post('/project/store', [ProjectController::class, 'store'])->name('project.store');
+    // Route::get('/project/view/{id}', [ProjectController::class, 'viewPost'])->name('project.viewPost');
+    // Route::get('/project/approve/{id}', [ProjectController::class, 'postApprove'])->name('project.approve');
+    // Route::get('/project/reject/{id}', [ProjectController::class, 'postReject'])->name('project.reject');
+    // Route::get('/project/comment/{id}', [ProjectController::class, 'comment'])->name('project.comment');
+
+    Route::get('/project/list', [PostController::class, 'project'])->name('project.list');
+    Route::get('/project/form', [PostController::class, 'projectForm'])->name('project.form');
+    Route::post('/project/store', [PostController::class, 'store'])->name('project.store');
+    Route::get('/project/view/{id}', [PostController::class, 'viewPost'])->name('project.viewPost');
+    Route::get('/project/approve/{id}', [PostController::class, 'postApprove'])->name('project.approve');
+    Route::get('/project/reject/{id}', [PostController::class, 'postReject'])->name('project.reject');
+    Route::get('/project/comment/{id}', [PostController::class, 'comment'])->name('project.comment');
+
+
+
+
 
    
     Route::get('/paper/list', [PaperController::class, 'paper'])->name('paper.list');

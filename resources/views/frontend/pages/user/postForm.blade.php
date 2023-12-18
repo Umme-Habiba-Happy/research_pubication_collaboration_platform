@@ -13,8 +13,17 @@
   </div>
 
   <div class="form-group">
-    <label for="exampleInputEmail1">Enter Author Name </label>
-    <input required  name="author_name" type="textarea" class="form-control" aria-describedby="emailHelp" placeholder="Enter Author Name ">
+    <label for="exampleInputEmail1">Enter Author Name</label>
+    <input  name="author_name" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Author Name">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Co-Author Name</label>
+    <input  name="coauthor_name" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Co-Author Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter DOI</label>
+    <input  name="doi" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter DOI">
   </div>
 
   <div class="form-group">
