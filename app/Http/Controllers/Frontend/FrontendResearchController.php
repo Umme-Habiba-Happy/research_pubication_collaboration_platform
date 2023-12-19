@@ -15,8 +15,69 @@ use Illuminate\Support\Facades\Response;
 class FrontendResearchController extends Controller
 {
     //
-    
+    public function singleResearchOverview($id){
+        //dd('Hello Profile');
+        $project = Post::find($id);
+        $count=Download::where('post_id',$id)->count();
+        $total_reads=Read::where('post_id',$id)->count();
+        $checkRead=Read::where('user_id',auth()->user()->id)->where('post_id',$id)->first();
+        if(!$checkRead)
+        {
+            Read::create([
+                'user_id'=>auth()->user()->id,
+                'post_id'=>$id
+            ]);
+        }      
+          return view('frontend.pages.researches.overview',compact('project','count', 'total_reads'));
+    }
+    public function singleResearchStats($id){
+        //dd('Hello Profile');
+        $project = Post::find($id);
+        $count=Download::where('post_id',$id)->count();
+        $total_reads=Read::where('post_id',$id)->count();
+        $checkRead=Read::where('user_id',auth()->user()->id)->where('post_id',$id)->first();
+        if(!$checkRead)
+        {
+            Read::create([
+                'user_id'=>auth()->user()->id,
+                'post_id'=>$id
+            ]);
+        } 
 
+        return view('frontend.pages.researches.stats',compact('project','count', 'total_reads'));
+    }
+    public function singleViewComment($id){
+        //dd('Hello Profile');
+        $project = Post::find($id);
+        $count=Download::where('post_id',$id)->count();
+        $total_reads=Read::where('post_id',$id)->count();
+        $checkRead=Read::where('user_id',auth()->user()->id)->where('post_id',$id)->first();
+        if(!$checkRead)
+        {
+            Read::create([
+                'user_id'=>auth()->user()->id,
+                'post_id'=>$id
+            ]);
+        } 
+       
+        return view('frontend.pages.researches.comment',compact('project','count', 'total_reads'));
+    }
+    public function singleViewCite($id){
+        //dd('Hello Profile');
+        $project = Post::find($id);
+        $count=Download::where('post_id',$id)->count();
+        $total_reads=Read::where('post_id',$id)->count();
+        $checkRead=Read::where('user_id',auth()->user()->id)->where('post_id',$id)->first();
+        if(!$checkRead)
+        {
+            Read::create([
+                'user_id'=>auth()->user()->id,
+                'post_id'=>$id
+            ]);
+        } 
+       
+        return view('frontend.pages.researches.cite',compact('project','count', 'total_reads'));
+    }
     public function single_research_download($id){
 
         $post=Post::find($id);
@@ -66,7 +127,7 @@ class FrontendResearchController extends Controller
             ]);
         }
         // dd($project);
-        return view("frontend.pages.researches.singleView",compact('project','count'));
+        return view("frontend.pages.researches.singleView",compact('project','count','total_reads'));
     }
 
     public function secondResearch(){

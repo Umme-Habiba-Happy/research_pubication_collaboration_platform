@@ -12,6 +12,8 @@
       <th scope="col">Author Name</th>
 
       <th scope="col">Category</th>
+      <th scope="col">Publication Date</th>
+
       <th scope="col">File</th>
       <th scope="col">Status</th> 
 
@@ -27,6 +29,8 @@
 
       <td>{{$project->author_name}}</td>
       <td>{{$project->category->categoryName}}</td>
+      <td>date</td>
+
       <td><a href="{{url('/uploads/'. $project->file)}} " target="_blank">{{$project->file}}</a></td>
       <!-- <td>{{$project->file}}</td> -->
       <td>{{$project->status}}</td>

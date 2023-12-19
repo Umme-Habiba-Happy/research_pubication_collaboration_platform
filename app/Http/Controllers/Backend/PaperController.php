@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Post;
 use App\Models\Publication;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,9 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class PaperController extends Controller
 {
     public function paper(){
-        $publications = Publication::paginate(3);
-
-        return view ('Admin.pages.paper.list',compact('publications'));
+         $projects = Post::where('status','Approved')->get();
+        return view ('Admin.pages.paper.list',compact('projects'));
     }
 
     public function paperForm(){

@@ -28,6 +28,7 @@ class FrontendUserController extends Controller
        
         return view('frontend.pages.user.stats');
     }
+    
     public function userResearch(){
         //dd('Hello Profile');
         $projects= Post::all();

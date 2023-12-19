@@ -57,6 +57,8 @@ Route::post('/registration',[FrontendUserController::class, 'doRegistration'])->
 
 
 Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
+Route::get('/research_under_category/{id}',[FrontendCategoryController::class, 'research_under_category'])->name('research_under_category');
+
 Route::get('/',[MasterController::class, 'master'])->name('master');
 Route::get('/sponsor',[FrontendSponsorController::class, 'sponsor'])->name('sponsor');
 
@@ -69,6 +71,7 @@ Route::put('/profile/update/{id}',[FrontendUserController::class, 'update'])->na
 Route::get('/profile/profile', [FrontendUserController::class, 'userProfile'])->name('profile.profile');
 Route::get('/profile/research', [FrontendUserController::class, 'userResearch'])->name('profile.research');
 Route::get('/profile/stats', [FrontendUserController::class, 'stats'])->name('profile.stats');
+
 
 // Route::get('/mypost', [FrontendUserController::class,'mypostList'])->name('researcher.post');
 // Route::get('/mypost/view/{id}', [FrontendUserController::class,'mypostView'])->name('researcher.post.view');
@@ -90,9 +93,15 @@ Route::get('/research' , [FrontendResearchController::class, 'research'])->name(
 // Assuming 'research' is the URI segment for your research routes
 
 Route::get('/research/{id}', [FrontendResearchController::class, 'singleResearch'])->name('singleResearchView');
-//for download 
+//for download
 Route::get('/research/download/{id}', [FrontendResearchController::class, 'single_research_download'])->name('single.research.download');
 
+Route::get('/singleView/overview{id}', [FrontendResearchController::class, 'singleResearchOverview'])->name('singleview.overView');
+
+Route::get('/singleView/stats{id}', [FrontendResearchController::class, 'singleResearchStats'])->name('singleview.stats');
+
+Route::get('/singleView/comment{id}', [FrontendResearchController::class, 'singleViewComment'])->name('singleview.comment');
+Route::get('/singleView/cite{id}', [FrontendResearchController::class, 'singleViewCite'])->name('singleview.cite');
 
 
 
@@ -109,8 +118,7 @@ Route::group(['prefix'=> 'admin'],function(){
 
    Route::post('login/store', [UserController::class,'loginStore'])->name('login.store');
    
- Route::group(['middleware'=> 'auth'],function(){
-   Route::group(['middleware'=> 'checkAdmin'],function(){
+ Route::group(['middleware'=> 'Admin'],function(){
 
 
     Route::get('admin/logout', [UserController::class,'logout'])->name('admin.logout');
@@ -173,6 +181,6 @@ Route::group(['prefix'=> 'admin'],function(){
  });
 
 });
-});
+
 
  

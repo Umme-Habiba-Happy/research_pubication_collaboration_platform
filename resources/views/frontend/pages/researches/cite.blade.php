@@ -27,7 +27,7 @@
  <div>
    <ul class="nav navbar-nav">			
 
-	   <li><a class="custom-button"  href="{{route('singleview.overView', $project->id)}}">OverView</a></li>
+	   <li><a class="custom-button"  href="{{route('singleview.overView', $project->id)}}"><b>OverView</b></a></li>
 	   <li><a class="custom-button" href="{{route('singleview.stats',$project->id)}}">Stats</a></li>
 	   <li><a class="custom-button" href="{{route('singleview.comment',$project->id)}}">Comment</a></li>
 	   <li><a class="custom-button" href="{{route('singleview.cite',$project->id)}}">Citation</a></li>
@@ -35,14 +35,8 @@
 
    </ul>
 </nav>
-@foreach($projects as $key=>$project)
-
-<tr>
- 
-    <td>{{$project->description}}</</td>
-
-    </td>    
- </tr>
-
-@endforeach
+<h2>All citation</h2>
+<hr>
+<h3>This research isn't cited in any other publications</h3>
+<hr>
 @endsection

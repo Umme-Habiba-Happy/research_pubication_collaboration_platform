@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
         if(Schema::hasTable('posts'))
         {
             $projects =Post::all();
-            View::share('posts', $projects);
+            View::share('projects', $projects);
         }       
     }
 }

@@ -5,8 +5,8 @@
 
 <div class=" row m-5">
 
-<h1>hello users</h1>
-<a class="btn btn-info col-2" type="button" href="{{route('users.form')}}">Enter New Users</a>
+<h1>ADMIN</h1>
+<a class="btn btn-info col-2" type="button" href="{{route('users.form')}}">Enter New Admin</a>
 <table class="table table-dark">
 <thead>
     <tr>

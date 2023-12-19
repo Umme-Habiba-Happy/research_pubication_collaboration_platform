@@ -9,7 +9,7 @@
       <th scope="col">Name</th>
       <th scope="col">Field</th>
       <th scope="col">Email</th>
-      <th scope="col">Contact</th>
+      <th scope="col">Degree</th>
       <th scope="col">Affiliation</th>
       <th scope="col">Research Interest</th>
       <th scope="col">Action</th>
@@ -22,7 +22,7 @@
       <td>{{$researcher->name}}</td>
       <td>{{$researcher->researcher_field}}</td>
       <td>{{$researcher->email}}</td>
-      <td>{{$researcher->contact}}</td>
+      <td>{{$researcher->degree}}</td>
       <td>{{$researcher->affiliation}}</td>
       <td>{{$researcher->research_interest}}</td>
       <td>

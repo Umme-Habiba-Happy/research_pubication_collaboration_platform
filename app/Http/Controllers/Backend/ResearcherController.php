@@ -26,7 +26,7 @@ class ResearcherController extends Controller
             'researcher_name' =>'required',
             'researcher_field' => 'required',
             'email' => 'required',
-            'contact' => 'required',
+            'degree' => 'required',
             'affiliation' => 'required',
             'research_interest' => 'required'
 
@@ -40,7 +40,7 @@ class ResearcherController extends Controller
                 'researcher_name' => $request ->researcher_name,
                 'researcher_field' => $request ->researcher_field,
                 'email' => $request ->email,
-                'contact' => $request ->contact,
+                'degree' => $request ->degree,
                 'affiliation' => $request ->affiliation,
                 'research_interest' => $request ->research_interest
 
@@ -77,7 +77,7 @@ class ResearcherController extends Controller
              'researcher_name'=>$request->researcher_name,
              'researcher_field'=>$request->researcher_field,
              'email'=>$request ->email,
-             'contact'=>$request->contact,
+             'degree'=>$request->degree,
              'affiliation' => $request ->affiliation,
              'research_interest' => $request ->research_interest
   

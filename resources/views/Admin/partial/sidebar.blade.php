@@ -9,7 +9,7 @@
                             </a>
                             <a class="nav-link" href="{{route('users.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Users
+                                Admins
                             </a>
                             <a class="nav-link" href="{{route('role.list')}}">
                                 
