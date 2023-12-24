@@ -15,7 +15,9 @@ class CategoryController extends Controller
 
     }
     public function research_under_category($id){
-        $projects = Post::where('category_id', $id)->get();
+        $projects = Post::where('category_id', $id)
+        ->where('status', 'Approved')
+        ->get();
         return view('frontend.pages.researches.research',compact('projects'));
         
     }

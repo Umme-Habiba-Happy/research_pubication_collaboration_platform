@@ -1,8 +1,14 @@
 @extends('Admin.master')
 @section('content')
 <h1>Paper</h1>
-<a class="btn btn-info" href="{{route('paper.form')}}">Add Paper</a>
-<a class="btn btn-info" href="{{route('paper.print')}}">Print</a>
+<style>
+        @media print {
+            /* Define print styles here */
+            body {
+                font-family: Arial, sans-serif;
+            }
+        }
+    </style>
 
 <table class="table">
   <thead class="thead-light">
@@ -15,7 +21,6 @@
       <th scope="col">File</th>
       <th scope="col">Status</th> 
 
-      <th scope="col">Action</th>
 
     </tr>
   </thead>
@@ -30,16 +35,15 @@
       <td>date</td>
       <td><a href="{{url('/uploads/'. $publication->file)}} " target="_blank">{{$publication->file}}</a></td>
       <td>{{$publication->status}}</td>
-
-      <td>
-        <!-- <a class="btn btn-success" href="">Approve</a>
-        <a class="btn btn-danger" href="">Reject</a> -->
-        <a class="btn btn-warning" href="{{route('project.viewPost', $publication->id)}}">View</a>
-
-
-      </td>
         </tr>
   @endforeach
+  <button onclick="printList()">Print List</button>
+
+<script>
+    function printList() {
+        window.print();
+    }
+</script>
   </tbody>
 </table>
 

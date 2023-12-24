@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,8 +23,8 @@ class FrontendPostController extends Controller
 
     public function mypostView($id){
         $project = Post::find($id);
-
-    return view('frontend.pages.user.postView',compact('project'));
+        $comments = Comment::all();
+    return view('frontend.pages.user.postView',compact('project','comments'));
     }
     public function postForm(){
         $categories=Category::all();

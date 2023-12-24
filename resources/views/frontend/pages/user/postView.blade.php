@@ -1,9 +1,6 @@
 @extends('frontend.master')
 @section('content')
 
-
-
-
 <h2></h2>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +106,7 @@
         </div>
       </div>
       @if($project->status == 'inactive')
-      <a href="{{route('resubmit.form')}}" type="submit" class="btn btn-success">Resubmit</a>
+      <a href="{{route('researcher.post.form')}}" type="submit" class="btn btn-success">Resubmit</a>
       @endif
 
 
@@ -129,9 +126,24 @@
       </form>
       <br><br>
 
-      <h4>
-        All Comments::
-      </h4>
+      <h4>All Comments:</h4>
+<ul>
+    @foreach($comments as $comment)
+        <li>
+            <div>
+                <div>
+                    <a href="{{ route('Profile') }}" class="profile-link">
+                        <img src="{{ url('/uploads/', $comment->user->image) }}" alt="Profile Image" width="50">
+                    </a>
+                    <hr>
+                    <h3>{{ $comment->user->name }}</h3>
+                </div>
+                <p>{{ $comment->comment }}</p>
+            </div>
+        </li>
+    @endforeach
+</ul>
+
 
 
 

@@ -97,7 +97,6 @@ class FrontendUserController extends Controller
     public function update(Request $request, $id){
         //dd($request->all());
         $users=User::find($id);
-
         // $validate = Validator::make($request->all(),[
         //     'title' =>'required',
         //     'description' =>'required',
@@ -113,10 +112,10 @@ class FrontendUserController extends Controller
 
   
          $fileName = auth()->user()->image;
-         if($request->hasFile('file')){
-             $file = $request->file('file');
+         if($request->hasFile('image')){
+             $file = $request->file('image');
              $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
-             $file->storeAs('/user/image', $fileName);
+             $file->storeAs('/uploads', $fileName);
          }
         $users->update([            
             'name'=>$request->full_name,

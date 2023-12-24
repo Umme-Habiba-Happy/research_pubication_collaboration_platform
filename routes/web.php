@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\FrontendPostController;
 use App\Http\Controllers\Frontend\FrontendUserController;
 use App\Http\Controllers\Frontend\FrontendResearchController;
@@ -42,7 +43,7 @@ use App\Http\Controllers\Frontend\FrontendResearchController;
 */
 //frontend routes
 
-Route::get('/home',[FrontendHomeController::class, 'home'])->name('homepage');
+Route::get('/',[FrontendHomeController::class, 'home'])->name('homepage');
 Route::get('/search',[FrontendHomeController::class, 'search'])->name('search');
 
 Route::get('/slider', [FrontendHomeController::class, 'slider'])->name('slider');
@@ -56,11 +57,8 @@ Route::post('/registration',[FrontendUserController::class, 'doRegistration'])->
 
 
 
-Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
-Route::get('/research_under_category/{id}',[FrontendCategoryController::class, 'research_under_category'])->name('research_under_category');
 
-Route::get('/',[MasterController::class, 'master'])->name('master');
-Route::get('/sponsor',[FrontendSponsorController::class, 'sponsor'])->name('sponsor');
+// Route::get('/',[MasterController::class, 'master'])->name('master');
 
 Route::group(['middleware'=> 'auth'], function(){
 
@@ -72,6 +70,8 @@ Route::get('/profile/profile', [FrontendUserController::class, 'userProfile'])->
 Route::get('/profile/research', [FrontendUserController::class, 'userResearch'])->name('profile.research');
 Route::get('/profile/stats', [FrontendUserController::class, 'stats'])->name('profile.stats');
 
+Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
+Route::get('/research_under_category/{id}',[FrontendCategoryController::class, 'research_under_category'])->name('research_under_category');
 
 // Route::get('/mypost', [FrontendUserController::class,'mypostList'])->name('researcher.post');
 // Route::get('/mypost/view/{id}', [FrontendUserController::class,'mypostView'])->name('researcher.post.view');
@@ -89,7 +89,6 @@ Route::get('/resubmit/form', [FrontendPostController::class,'resubmit'])->name('
 
 
 
-Route::get('/research' , [FrontendResearchController::class, 'research'])->name('research');
 // Assuming 'research' is the URI segment for your research routes
 
 Route::get('/research/{id}', [FrontendResearchController::class, 'singleResearch'])->name('singleResearchView');
@@ -102,7 +101,10 @@ Route::get('/singleView/stats{id}', [FrontendResearchController::class, 'singleR
 
 Route::get('/singleView/comment{id}', [FrontendResearchController::class, 'singleViewComment'])->name('singleview.comment');
 Route::get('/singleView/cite{id}', [FrontendResearchController::class, 'singleViewCite'])->name('singleview.cite');
+Route::get('/research' , [FrontendResearchController::class, 'research'])->name('research');
+Route::get('/researchComment' , [FrontendResearchController::class, 'researchComment'])->name('researchComment');
 
+Route::post('/research/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 
 
@@ -137,6 +139,8 @@ Route::group(['prefix'=> 'admin'],function(){
 
 
     Route::get('/researcher/list', [ResearcherController::class, 'researcher'])->name('researcher.list');
+    Route::get('/researcher/print', [ResearcherController::class, 'researcherPrint'])->name('researcher.print');
+
     Route::get('/researcher/form', [ResearcherController::class, 'researcherForm'])->name('researcher.form');
     Route::post('/researcher/store', [ResearcherController::class, 'store'])->name('researcher.store');
     Route::get('/researcher/edit/{id}', [ResearcherController::class, 'edit'])->name('researcher.edit');
@@ -149,6 +153,7 @@ Route::group(['prefix'=> 'admin'],function(){
     // Route::get('/project/approve/{id}', [ProjectController::class, 'postApprove'])->name('project.approve');
     // Route::get('/project/reject/{id}', [ProjectController::class, 'postReject'])->name('project.reject');
     // Route::get('/project/comment/{id}', [ProjectController::class, 'comment'])->name('project.comment');
+    Route::get('/project/print', [PostController::class, 'projectPrint'])->name('project.print');
 
     Route::get('/project/list', [PostController::class, 'project'])->name('project.list');
     Route::get('/project/form', [PostController::class, 'projectForm'])->name('project.form');
@@ -162,7 +167,8 @@ Route::group(['prefix'=> 'admin'],function(){
 
 
 
-   
+    Route::get('/paper/print', [PaperController::class, 'paperPrint'])->name('paper.print');
+
     Route::get('/paper/list', [PaperController::class, 'paper'])->name('paper.list');
     Route::get('/paper/form', [PaperController::class, 'paperForm'])->name('paper.form');
     Route::post('/paper/store', [PaperController::class, 'store'])->name('paper.store');

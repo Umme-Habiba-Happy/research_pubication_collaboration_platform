@@ -101,8 +101,17 @@ class FrontendResearchController extends Controller
        
 
     }
+
+    public function researchComment($id){
+        $research = Post::findOrFail($id);
+        $comments = $research->comments;
+        return view('frontend.pages.researches.commentShow',compact('comments'));
+
+    }
     public function research()
     {
+     
+
         $projects = Post::where('status', '=', 'Approved')->get();
     
         // Assuming `published_date` is the column name in your database

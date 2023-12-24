@@ -12,7 +12,7 @@ class FrontendHomeController extends Controller
 {
     public function home(){
     //  $categories = category::all();
-     $projects=Post::where('status', '=' , 'Approved')->get();
+     $projects=Post::where('status', '=' , 'Approved')->take(3)->get();
     //  dd($projects);
 
       return view('frontend.pages.home.home',compact('projects'));

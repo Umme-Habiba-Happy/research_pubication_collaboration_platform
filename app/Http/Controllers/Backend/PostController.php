@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    
+    public function projectPrint(){
+        $projects=Post::with('category','user')->paginate(10);
+        return view ('Admin.pages.project.print',compact('projects'));
+
+    }
     public function project(){
         $projects=Post::with('category','user')->paginate(10);
         return view ('Admin.pages.project.list',compact('projects'));

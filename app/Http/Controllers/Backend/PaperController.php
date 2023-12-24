@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class PaperController extends Controller
 {
+
+    public function paperPrint(){
+        $projects = Post::where('status','Approved')->get();
+       return view ('Admin.pages.paper.print',compact('projects'));
+   }
     public function paper(){
          $projects = Post::where('status','Approved')->get();
         return view ('Admin.pages.paper.list',compact('projects'));

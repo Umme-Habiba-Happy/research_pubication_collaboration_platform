@@ -2,6 +2,7 @@
 @section('content')
 <h1>Project</h1>
 <a class="btn btn-info" href="{{route('project.form')}}">Create Project</a>
+<a class="btn btn-danger" href="{{route('project.print')}}">Print</a>
 
 <table class="table table-dark">
   <thead>

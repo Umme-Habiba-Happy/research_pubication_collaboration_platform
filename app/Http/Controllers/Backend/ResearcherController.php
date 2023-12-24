@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ResearcherController extends Controller
 {
+    public function researcherPrint(){
+        $researchers= User::where('role' , 'researcher')->get();
+        return view ('Admin.pages.researcher.print', compact('researchers'));
+        }
     public function researcher(){
         $researchers= User::where('role' , 'researcher')->get();
        return view ('Admin.pages.researcher.list', compact('researchers'));

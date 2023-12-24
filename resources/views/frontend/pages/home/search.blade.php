@@ -13,7 +13,7 @@
 			<div class="col-sm-4">
 				<div class="research_1_inner text-center">
 					<h3>{{$project->title}}<i class="fa fa-flask"></i></h3>
-					<h4><a href="{{route('singleResearchView')}}"></a></h4>
+					<h4><a href="{{route('research',$project->id)}}"></a></h4>
 					<p>{{$project->title}}</p>
 
 				</div>

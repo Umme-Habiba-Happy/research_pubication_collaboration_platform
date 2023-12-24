@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('research')
-@include('frontend.partial.research')
+@include('frontend.pages.home.research')
 @endsection
 
 

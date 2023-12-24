@@ -1,4 +1,4 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background: linear-gradient(to right, #343a40, #6c757d);">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">ScholarLink</a>
             <!-- Sidebar Toggle-->

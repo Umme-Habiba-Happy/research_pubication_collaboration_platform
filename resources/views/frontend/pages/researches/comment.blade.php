@@ -2,9 +2,10 @@
 @extends('frontend.partial.singleViewResearchInfo')
 @section('content')
 <style>
-        .comment-box {
+    .comment-box {
         width: 100%;
-        max-width: 500px; /* Adjust the maximum width as needed */
+        max-width: 500px;
+        /* Adjust the maximum width as needed */
         margin: 20px 0;
     }
 
@@ -14,7 +15,8 @@
         box-sizing: border-box;
         margin-bottom: 10px;
     }
-        .comment-box button {
+
+    .comment-box button {
         padding: 10px;
         background-color: #3498db;
         color: #fff;
@@ -28,26 +30,36 @@
     }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
- 
-
- <div>
-   <ul class="nav navbar-nav">			
-
-	   <li><a  href="{{route('singleview.overView', $project->id)}}">OverView</a></li>
-	   <li><a href="{{route('singleview.stats',$project->id)}}">Stats</a></li>
-	   <li><a href="{{route('singleview.comment',$project->id)}}">Comment</a></li>
-	   <li><a href="{{route('singleview.cite',$project->id)}}">Citation</a></li>
 
 
-   </ul>
+    <div>
+        <ul class="nav navbar-nav">
+
+            <li><a href="{{route('singleview.overView', $project->id)}}">OverView</a></li>
+            <li><a href="{{route('singleview.stats',$project->id)}}">Stats</a></li>
+            <li><a href="{{route('singleview.comment',$project->id)}}">Comment</a></li>
+            <li><a href="{{route('singleview.cite',$project->id)}}">Citation</a></li>
+
+
+        </ul>
 </nav>
-{{auth()->user()->role}}
-<h3>{{auth()->user()->name}}</h3>
-
-<div class="comment-box">
-    <textarea placeholder="Write your comment here..." rows="4"></textarea>
-    <button>Submit Comment</button>
+<div class="user-profile">
+    
+    <a href="" class="profile-link">
+        <img src="{{ url('/uploads/', auth()->user()->image) }}" alt="Profile Image" class="profile-image" width="150">
+    </a>
+    <h3>{{auth()->user()->name}}</h3>
 </div>
+
+<form action="{{route('comment.store',$project->id)}}" method="post">
+    @csrf
+    <div class="comment-box">
+
+        <textarea name="comment" placeholder="Write your comment here..." rows="4"></textarea>
+        <button type="submit">Submit Comment</button>
+    </div>
+</form>
+
 
 
 @endsection

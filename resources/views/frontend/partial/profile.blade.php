@@ -1,3 +1,4 @@
+
 <div class="col-12 row gutters-sm">
   <div class="col-md-12 mb-3">
     <div class="card">
@@ -16,7 +17,8 @@
           
 
           <div class="mt-5">
-            <img src="{{url('uploads/' , auth()->user()->image)}}" alt="Admin" class="rounded-circle" width="150">
+            <img src="{{url('/uploads/' , auth()->user()->image)}}" alt="upload image" value="{{ auth()->user()->image }}" type="file" class="rounded-circle" width="150">
+    
           </div>
         </div>
         
