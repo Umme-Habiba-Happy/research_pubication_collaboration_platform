@@ -5,25 +5,40 @@
   @csrf
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Research Title</label>
-    <input required  name="title" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Research Title">
+    <input required  name="title" type="text" class="form-control"  placeholder="Enter Research Title">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Enter Research Description</label>
-    <input  name="description" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Research Description">
-  </div>
+    <label for="researchDescription">Enter Research Description</label>
+    <textarea class="form-control"  name="description" rows="4" maxlength="5000"></textarea>
+</div>
+
 
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Author Name</label>
-    <input  name="author_name" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Author Name">
+    <input  name="author_name" type="text" class="form-control" placeholder="Enter Author Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Author Affiliation</label>
+    <input  name="author_affiliation" type="text" class="form-control"  placeholder="Enter Author Affiliation">
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Co-Author Name</label>
-    <input  name="coauthor_name" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Co-Author Name">
+    <input  name="coauthor_name" type="text" class="form-control" placeholder="Enter Co-Author Name">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Co-Author Affiliation</label>
+    <input  name="coauthor_affiliation" type="text" class="form-control" placeholder="Enter Co-Author Affiliation">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Enter DOI</label>
-    <input  name="doi" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter DOI">
+    <input  name="doi" type="text" class="form-control"  placeholder="Enter DOI">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Reference DOI</label>
+    <input  name="reference" type="text" class="form-control"  placeholder="Enter reference">
   </div>
 
   <div class="form-group">

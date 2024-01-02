@@ -13,7 +13,6 @@
       <th scope="col">Author Name</th>
 
       <th scope="col">Category</th>
-      <th scope="col">Publication Date</th>
 
       <th scope="col">File</th>
       <th scope="col">Status</th> 
@@ -24,13 +23,14 @@
 
   <tbody>
     @foreach($projects as $key=>$project)
+    
     <tr>
       <th scope="row">{{$key+1}}</th>
       <td>{{$project->title}}</td>
 
       <td>{{$project->author_name}}</td>
       <td>{{$project->category->categoryName}}</td>
-      <td>date</td>
+      
 
       <td><a href="{{url('/uploads/'. $project->file)}} " target="_blank">{{$project->file}}</a></td>
       <!-- <td>{{$project->file}}</td> -->
@@ -51,5 +51,5 @@
   </tbody>
 
 </table>
-<!-- {{$projects->links()}} -->
+{{$projects->links()}}
 @endsection

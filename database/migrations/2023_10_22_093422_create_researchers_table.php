@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('email', 30);
             $table->string('contact', 30);
             $table->string('affiliation', 30);
-            $table->string('research_interest', 30);
+            $table->string('doi')->nullable()->unique();
+            $table->integer('citation_count')->default(0);
 
 
             $table->timestamps();

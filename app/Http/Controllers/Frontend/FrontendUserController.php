@@ -14,8 +14,19 @@ use PhpParser\Node\Stmt\Return_;
 class FrontendUserController extends Controller
 {
     //
+    public function deletePost(Request $request, $id)
+{
+    // Validate the request if necessary
+
+    $post = Post::where('researcher_id', auth()->user()->id)->findOrFail($id);
+    $post->delete();
+
+    return redirect()->back()->with('success', 'Post deleted successfully');
+}
+
     public function profile(){
-        //dd('Hello Profile');
+
+   
         return view('frontend.pages.user.profile');
     }
 
@@ -31,8 +42,11 @@ class FrontendUserController extends Controller
     
     public function userResearch(){
         //dd('Hello Profile');
-        $projects= Post::all();
-        return view('frontend.pages.user.researchInfo',compact('projects'));
+        $projects = Post::where('researcher_id', '=', auth()->user()->id)->get();
+
+        // dd($projects);
+
+        return view('frontend.pages.user.postList', compact('projects'));
     }
 
 

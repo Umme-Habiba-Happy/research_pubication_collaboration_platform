@@ -5,6 +5,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Researcher;
 use Illuminate\Http\Request;
+use App\Models\Recommendation;
 use App\Http\Controllers\Controller;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
@@ -12,6 +13,7 @@ class FrontendHomeController extends Controller
 {
     public function home(){
     //  $categories = category::all();
+
      $projects=Post::where('status', '=' , 'Approved')->take(3)->get();
     //  dd($projects);
 
@@ -23,6 +25,7 @@ class FrontendHomeController extends Controller
     }
     public function search(Request $request){
       $projects=Post::where('status', '=' , 'Approved')->get();
+      
       if($request->search){
           // dd($request->all());
           

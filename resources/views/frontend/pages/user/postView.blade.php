@@ -139,6 +139,7 @@
                     <h3>{{ $comment->user->name }}</h3>
                 </div>
                 <p>{{ $comment->comment }}</p>
+                <p>citation</p>
             </div>
         </li>
     @endforeach

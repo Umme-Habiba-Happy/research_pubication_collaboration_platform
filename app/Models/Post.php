@@ -9,7 +9,25 @@ class Post extends Model
 {
     use HasFactory;
     protected $guarded =[]; 
-
+    protected $fillable = [
+        'title',
+        'description',
+        'author_name',
+        'author_affiliation',
+        'coauthor_name',
+        'coauthor_affiliation',
+        'doi',
+        'reference',
+        'researcher_id',
+        'category_id',
+        'file',
+        'citation_count',
+        // Add other fields as needed...
+    ];
+    public function citations()
+    {
+        return $this->hasMany(Citaton::class);
+    }
     public function category()
     {
         return $this->belongsTo(Category::class, "category_id", "id");
@@ -21,6 +39,16 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function researcher()
+    {
+        return $this->belongsTo(Researcher::class, 'researcher_id');
+    }
+
+    public function references()
+    {
+        return $this->hasMany(Reference::class);
     }
 
 

@@ -69,6 +69,7 @@ Route::put('/profile/update/{id}',[FrontendUserController::class, 'update'])->na
 Route::get('/profile/profile', [FrontendUserController::class, 'userProfile'])->name('profile.profile');
 Route::get('/profile/research', [FrontendUserController::class, 'userResearch'])->name('profile.research');
 Route::get('/profile/stats', [FrontendUserController::class, 'stats'])->name('profile.stats');
+Route::delete('/delete/post/{id}', [FrontendUserController::class, 'deletePost'])->name('delete.post');
 
 Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
 Route::get('/research_under_category/{id}',[FrontendCategoryController::class, 'research_under_category'])->name('research_under_category');
@@ -94,6 +95,8 @@ Route::get('/resubmit/form', [FrontendPostController::class,'resubmit'])->name('
 Route::get('/research/{id}', [FrontendResearchController::class, 'singleResearch'])->name('singleResearchView');
 //for download
 Route::get('/research/download/{id}', [FrontendResearchController::class, 'single_research_download'])->name('single.research.download');
+Route::post('/recommend/{id}', [FrontendResearchController::class, 'recommend'])->name('recommend');
+
 
 Route::get('/singleView/overview{id}', [FrontendResearchController::class, 'singleResearchOverview'])->name('singleview.overView');
 

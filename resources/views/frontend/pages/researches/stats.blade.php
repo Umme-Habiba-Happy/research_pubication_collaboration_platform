@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-3">
         <div class="research-box">
-            <h3>Total Reads</h3>
+            <h3>Total Reads:{{$total_reads}}  </h3>
         </div>
 
     </div>

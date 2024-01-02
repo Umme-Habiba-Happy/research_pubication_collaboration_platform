@@ -35,14 +35,12 @@
 
    </ul>
 </nav>
-@foreach($projects as $key=>$project)
 
 <tr>
  
     <td>{{$project->description}}</</td>
-
-    </td>    
+  
  </tr>
 
-@endforeach
+
 @endsection

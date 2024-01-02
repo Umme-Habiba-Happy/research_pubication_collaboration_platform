@@ -3,15 +3,13 @@
 @section('content')
 
 
-<h1>mxnmcnxm</h1>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
  
 
   <div>
 	<ul class="nav navbar-nav">			
 
-		<li><a  href="{{route('profile.profile')}}">Profile</a></li>
+		<li><a  href="{{route('profile.profile',)}}">Profile</a></li>
 		<li><a href="{{route('profile.research')}}">Research</a></li>
 		<li><a href="{{route('profile.stats')}}">Stats</a></li>
 

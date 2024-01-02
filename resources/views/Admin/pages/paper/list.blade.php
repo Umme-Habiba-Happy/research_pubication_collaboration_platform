@@ -27,7 +27,7 @@
       <td>{{$publication ->title }}</td>
       <td>{{$publication ->author_name }}</td>
       <td>{{$publication ->category->categoryName }}</td>
-      <td>date</td>
+      <td>{{$publication->updated_at->format('F j, Y')}}</td>
       <td><a href="{{url('/uploads/'. $publication->file)}} " target="_blank">{{$publication->file}}</a></td>
       <td>{{$publication->status}}</td>
 

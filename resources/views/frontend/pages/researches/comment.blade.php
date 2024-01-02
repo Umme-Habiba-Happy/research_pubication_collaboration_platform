@@ -60,6 +60,26 @@
     </div>
 </form>
 
+<ul>
+@foreach($comments as $comment)
+    <li>
+        <div>
+            <div>
+                <a href="{{ route('Profile') }}" class="profile-link">
+                    <img src="{{ url('/uploads/', $comment->user->image) }}" alt="Profile Image" width="50">
+                </a>
+                
+                <div>
+                    <h3>{{ $comment->user->name }}</h3>
+                    <p>{{ $comment->comment }}</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </li>
+@endforeach
+
+</ul>
 
 
 @endsection

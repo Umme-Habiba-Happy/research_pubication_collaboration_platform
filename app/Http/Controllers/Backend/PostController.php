@@ -17,6 +17,7 @@ class PostController extends Controller
 
     }
     public function project(){
+
         $projects=Post::with('category','user')->paginate(10);
         return view ('Admin.pages.project.list',compact('projects'));
     }
@@ -65,10 +66,10 @@ class PostController extends Controller
     }
     public function postApprove(Request $request, $id){
             $project = Post::find($id);
-            // dd($project);
+            //dd($project);
             $project->update([
                 'status'=>'Approved',
-                'published_date' =>Carbon::now(),
+                'created_at' =>$request->created_at
             ]);
             return redirect()->route('project.list');
 

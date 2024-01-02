@@ -34,9 +34,9 @@
 						<!-- Download button -->
 						<form method="get" action="{{ url('/download/' . $project->file) }}">
 							@csrf
-							<button type="submit" class="btn btn-primary mr-2">Download</button>
-							<button class="btn btn-success text-dark mr-2">Save</button>
-							<a href="#" class="btn btn-info text-dark">Share</a>
+							<a class="btn btn-success" href="{{route('single.research.download', $project->id)}}">Download</a>
+							<a href="" class="btn btn-info">Recommend</a>
+							<a href="mailto:?subject=Subject%20of%20the%20email&body=Here%20is%20the%20link%20to%20the%20file:%20{{ url('/uploads/' . $project->file) }}" class="btn btn-info text-dark">Share</a>
 						</form>
 
 
