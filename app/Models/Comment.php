@@ -17,7 +17,7 @@ class Comment extends Model
 
     public function research()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class, 'post_id');
     }
 
 

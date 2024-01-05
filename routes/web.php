@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\FrontendPostController;
 use App\Http\Controllers\Frontend\FrontendUserController;
 use App\Http\Controllers\Frontend\FrontendResearchController;
+use App\Http\Controllers\Frontend\CitationController;
 
 
  use App\Http\Controllers\AdminController;
@@ -26,7 +27,7 @@ use App\Http\Controllers\Frontend\FrontendResearchController;
  use App\Http\controllers\Backend\ReportController;
  use App\Http\controllers\Backend\SponsorController;
  use App\Http\Controllers\Frontend\MasterController;
-
+use App\Http\Controllers\SslCommerzPaymentController;
 
  //download function
  
@@ -42,6 +43,7 @@ use App\Http\Controllers\Frontend\FrontendResearchController;
 |
 */
 //frontend routes
+Route::post('/api/updateCitationCount', [CitationController::class, 'updateCitationCount']);
 
 Route::get('/',[FrontendHomeController::class, 'home'])->name('homepage');
 Route::get('/search',[FrontendHomeController::class, 'search'])->name('search');
@@ -62,6 +64,20 @@ Route::post('/registration',[FrontendUserController::class, 'doRegistration'])->
 
 Route::group(['middleware'=> 'auth'], function(){
 
+   // SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
 Route::get('/logout', [FrontendUserController::class, 'logout'])->name('user.logout');
 Route::get('/profile', [FrontendUserController::class, 'profile'])->name('Profile');
 Route::get('/edit/{id}',[FrontendUserController::class, 'edit'])->name('edit');
@@ -70,6 +86,8 @@ Route::get('/profile/profile', [FrontendUserController::class, 'userProfile'])->
 Route::get('/profile/research', [FrontendUserController::class, 'userResearch'])->name('profile.research');
 Route::get('/profile/stats', [FrontendUserController::class, 'stats'])->name('profile.stats');
 Route::delete('/delete/post/{id}', [FrontendUserController::class, 'deletePost'])->name('delete.post');
+
+Route::get('/author/viewProfile{id}', [FrontendUserController::class, 'authorProfile'])->name('author.viewProfile');
 
 Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
 Route::get('/research_under_category/{id}',[FrontendCategoryController::class, 'research_under_category'])->name('research_under_category');
@@ -82,12 +100,14 @@ Route::get('/research_under_category/{id}',[FrontendCategoryController::class, '
 // Route::get('/resubmit/form', [FrontendUserController::class,'resubmit'])->name('resubmit.form');
 
 Route::get('/mypost', [FrontendPostController::class,'mypostList'])->name('researcher.post');
+Route::get('/mypost/edit/{id}', [FrontendPostController::class, 'mypostEdit'])->name('researcher.post.edit');
+Route::put('/mypost/update/{id}', [FrontendPostController::class, 'mypostUpdate'])->name('researcher.post.update');
+
 Route::get('/mypost/view/{id}', [FrontendPostController::class,'mypostView'])->name('researcher.post.view');
 
-Route::get('/mypost/form', [FrontendPostController::class,'postForm'])->name('researcher.post.form');
+Route::get('/mypost/form/{id}', [FrontendPostController::class,'postForm'])->name('researcher.post.form');
 Route::post('/mypost/store', [FrontendPostController::class,'postStore'])->name('researcher.postStore');
 Route::get('/resubmit/form', [FrontendPostController::class,'resubmit'])->name('resubmit.form');
-
 
 
 // Assuming 'research' is the URI segment for your research routes
@@ -100,7 +120,7 @@ Route::post('/recommend/{id}', [FrontendResearchController::class, 'recommend'])
 
 Route::get('/singleView/overview{id}', [FrontendResearchController::class, 'singleResearchOverview'])->name('singleview.overView');
 
-Route::get('/singleView/stats{id}', [FrontendResearchController::class, 'singleResearchStats'])->name('singleview.stats');
+Route::get('/singleView/stats/{id}', [FrontendResearchController::class, 'singleResearchStats'])->name('singleview.stats');
 
 Route::get('/singleView/comment{id}', [FrontendResearchController::class, 'singleViewComment'])->name('singleview.comment');
 Route::get('/singleView/cite{id}', [FrontendResearchController::class, 'singleViewCite'])->name('singleview.cite');
@@ -130,6 +150,8 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/', [HomeController::class,'home'])->name('dashboard');
 
     Route::get('/users/list' , [ UserController::class, 'list'])->name('users.list');
+    Route::delete('/users/delete/{id}', [UserController::class, 'deleteAdmin'])->name('users.delete');
+
     Route::get('/users/form',[UserController::class, 'form'])->name('users.form');
     Route::post('/users/store',[UserController::class, 'store'])->name('users.store');
     Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
@@ -180,9 +202,9 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/report/form', [ReportController::class, 'reportForm'])->name('report.form');
     Route::post('/report/store', [ReportController::class, 'store'])->name('report.store');
    
-    Route::get('/sponsor/list', [SponsorController::class, 'sponsor'])->name('sponsor.list');
-    Route::get('/sponsor/form', [SponsorController::class, 'sponsorForm'])->name('sponsor.form');
-    Route::post('/sponsor/store', [SponsorController::class, 'store'])->name('sponsor.store');
+   //  Route::get('/sponsor/list', [SponsorController::class, 'sponsor'])->name('sponsor.list');
+   //  Route::get('/sponsor/form', [SponsorController::class, 'sponsorForm'])->name('sponsor.form');
+   //  Route::post('/sponsor/store', [SponsorController::class, 'store'])->name('sponsor.store');
    
     Route::get('/category/list', [CategoryController::class, 'category'])->name('category.list');
     Route::get('/category/form', [CategoryController::class, 'categoryForm'])->name('category.form');

@@ -41,22 +41,52 @@
     </div>
     <div class="col-md-3">
         <div class="research-box">
-            <h3>Total Reads:{{$total_reads}}  </h3>
+            <h3>Total Reads:{{$total_reads}} </h3>
         </div>
 
     </div>
     <div class="col-md-3">
         <div class="research-box">
-            <h3>Reference</h3>
+            <h3>Recommended</h3>
         </div>
-
     </div>
+
     <div class="col-md-3">
         <div class="research-box">
-            <h3>Total Citation : 0</h3>
+            <h3>Total Count: <span id="citation_count">{{$project->citation_count}} </h3>
         </div>
-
+        <!-- <button onclick="updateCitationCount()">Update Citation Count</button> -->
     </div>
 </div>
+
+<!-- <script>
+    function updateCitationCount() {
+        // Get the value entered by the user in the reference DOI input
+        var referenceDOI = document.getElementById('reference').value;
+
+        // Send DOI data to the server for processing
+        fetch('/api/updateCitationCount', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ doi: referenceDOI }),
+        })
+        .then(response => {
+            if (response.ok) {
+                // Retrieve updated citation count from the server response
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(updatedCitationCount => {
+            // Update the UI to display the updated citation count
+            document.getElementById('citation_count').innerText = updatedCitationCount;
+        })
+        .catch(error => {
+            console.error('Error during citation count update:', error);
+        });
+    }
+</script> -->
 
 @endsection

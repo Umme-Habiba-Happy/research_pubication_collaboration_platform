@@ -24,10 +24,13 @@ class Post extends Model
         'citation_count',
         // Add other fields as needed...
     ];
-    public function citations()
-    {
-        return $this->hasMany(Citaton::class);
-    }
+   
+
+    public function incrementCitationCount()
+{
+    $this->increment('citation_count');
+}
+
     public function category()
     {
         return $this->belongsTo(Category::class, "category_id", "id");
@@ -36,10 +39,11 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, "researcher_id", "id");
     }
+ 
     public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
+{
+    return $this->hasMany(Comment::class, 'post_id');
+}
 
     public function researcher()
     {

@@ -52,6 +52,7 @@
 </div>
 
 <form action="{{route('comment.store',$project->id)}}" method="post">
+
     @csrf
     <div class="comment-box">
 
@@ -62,21 +63,23 @@
 
 <ul>
 @foreach($comments as $comment)
-    <li>
-        <div>
+    @if($comment->post_id == $project->id)
+        <li>
             <div>
-                <a href="{{ route('Profile') }}" class="profile-link">
-                    <img src="{{ url('/uploads/', $comment->user->image) }}" alt="Profile Image" width="50">
-                </a>
-                
                 <div>
-                    <h3>{{ $comment->user->name }}</h3>
-                    <p>{{ $comment->comment }}</p>
+                    <a href="{{ route('Profile') }}" class="profile-link">
+                        <img src="{{ url('/uploads/', $comment->user->image) }}" alt="Profile Image" width="50">
+                    </a>
+                    
+                    <div>
+                        <h3>{{ $comment->user->name }}</h3>
+                        <p>{{ $comment->comment }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <hr>
-    </li>
+            <hr>
+        </li>
+    @endif
 @endforeach
 
 </ul>

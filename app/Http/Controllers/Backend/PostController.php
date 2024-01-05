@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Post;
@@ -61,7 +60,8 @@ class PostController extends Controller
 
     public function viewPost($id){
         $project = Post::find($id);
-       // dd($project);
+        
+       //dd($project);
         return view ('Admin.pages.project.viewPost',compact('project'));
     }
     public function postApprove(Request $request, $id){
@@ -87,7 +87,7 @@ class PostController extends Controller
 
 public function comment(Request $request, $id){
     $project = Post::find($id);
-     //dd($request->all());
+     dd($request->all());
     $project->update([
         'comment'=>$request->comment,
     ]);

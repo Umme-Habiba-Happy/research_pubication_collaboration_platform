@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('reference')->nullable();
             $table->integer('citation_count')->default(0);
 
-        
             $table->foreignId('category_id');
             $table->string('status')->default('inactive');
             $table->string('file')->nullable();

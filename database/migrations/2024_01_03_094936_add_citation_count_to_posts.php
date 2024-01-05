@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('citations', function (Blueprint $table) {
-            $table->id();
-            $table->string('doi')->unique();
-            $table->unsignedInteger('count')->default(0);
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->integer('citation_count')->default(0);
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('citations');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('citation_count');
+        });
     }
 };

@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         return view('Admin.pages.login');
     }
-    
+
     public function loginStore(Request $request)
     {
         //dd($request->all());
@@ -42,6 +42,12 @@ class UserController extends Controller
 
         $users = Admin::all();
         return view("Admin.pages.users.list", compact('users'));
+    }
+
+    public function deleteAdmin(Request $request, $id)
+    {
+        $user = Admin::where('id', auth()->user()->id)->findOrFail($id);
+        $user->delete();
     }
     public function form()
     {
@@ -87,6 +93,7 @@ class UserController extends Controller
     {
         $users = Admin::find($id);
         return view('admin.pages.users.editForm', compact('users'));
+        return redirect()->back();
     }
 
     public function update(Request $request, $id)

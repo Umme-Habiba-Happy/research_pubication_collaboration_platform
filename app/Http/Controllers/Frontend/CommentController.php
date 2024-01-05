@@ -10,18 +10,18 @@ class CommentController extends Controller
 {
     //
     
-public function store(Request $request, $researchId)
+public function store(Request $request, $id)
 {
     //dd($researchId);   
     $request->validate([
-        'comment' => 'required|string|max:255',
+        'comment' => 'required|max:255',
     ]);
 
-    Comment::create([
-        'user_id' => auth()->user()->id,
-        'post_id' => $researchId,
-        'comment' => $request->comment,
-    ]);
+    $comment = new Comment();
+    $comment->comment = $request->input('comment');
+    $comment->user_id = auth()->user()->id;
+    $comment->post_id = $id; // Correct the foreign key name
+    $comment->save();
 
     return redirect()->back();
 }

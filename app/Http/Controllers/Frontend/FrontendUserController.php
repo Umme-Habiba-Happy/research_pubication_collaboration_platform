@@ -14,6 +14,7 @@ use PhpParser\Node\Stmt\Return_;
 class FrontendUserController extends Controller
 {
     //
+ 
     public function deletePost(Request $request, $id)
 {
     // Validate the request if necessary

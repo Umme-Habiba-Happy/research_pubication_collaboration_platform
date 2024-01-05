@@ -37,8 +37,10 @@
 
         <a class="btn btn-success" href="{{route('users.edit', $item->id)}}">Edit</a>
         <a class="btn btn-warning" href="">View</a>
-        <a class="btn btn-danger" href="{{route('users.delete', $item->id)}}">Delete</a>
-
+        <form action="{{ route('users.delete', ['id' => $item->id]) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete</button>
       </td>
 </tr>
 
