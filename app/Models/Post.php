@@ -9,21 +9,21 @@ class Post extends Model
 {
     use HasFactory;
     protected $guarded =[]; 
-    protected $fillable = [
-        'title',
-        'description',
-        'author_name',
-        'author_affiliation',
-        'coauthor_name',
-        'coauthor_affiliation',
-        'doi',
-        'reference',
-        'researcher_id',
-        'category_id',
-        'file',
-        'citation_count',
-        // Add other fields as needed...
-    ];
+    // protected $fillable = [
+    //     'title',
+    //     'description',
+    //     'author_name',
+    //     'author_affiliation',
+    //     'coauthor_name',
+    //     'coauthor_affiliation',
+    //     'doi',
+    //     'reference',
+    //     'researcher_id',
+    //     'category_id',
+    //     'file',
+    //     'citation_count',
+    //     // Add other fields as needed...
+    // ];
    
 
     public function incrementCitationCount()

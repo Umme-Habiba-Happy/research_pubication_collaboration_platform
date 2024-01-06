@@ -19,10 +19,13 @@ return new class extends Migration
             $table->string('researcher_name', 50);
             $table->string('researcher_field', 30);
             $table->string('email', 30);
-            $table->string('contact', 30);
-            $table->string('affiliation', 30);
-            $table->string('doi')->nullable()->unique();
-            $table->integer('citation_count')->default(0);
+            $table->integer('contact', 30);
+            $table->string('degree', 30);
+            $table->string('institute');
+            $table->string('department');
+            $table->string('skills');
+
+
 
 
             $table->timestamps();

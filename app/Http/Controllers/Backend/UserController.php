@@ -44,11 +44,25 @@ class UserController extends Controller
         return view("Admin.pages.users.list", compact('users'));
     }
 
-    public function deleteAdmin(Request $request, $id)
+  
+
+    public function deleteAdmin($id)
     {
-        $user = Admin::where('id', auth()->user()->id)->findOrFail($id);
-        $user->delete();
+        $user = Admin::find($id);
+    
+        if ($user) {
+            // Perform any additional checks or permissions if needed
+            $user->delete();
+    
+            // Redirect back or to a specific route after deletion
+            return redirect()->route('users.list')->with('success', 'user deleted successfully');
+        } else {
+            // Handle the case where the post is not found
+            return redirect()->route('users.list')->with('error', 'user not found');
+        }
     }
+
+
     public function form()
     {
         return view('Admin.pages.users.form');
@@ -80,15 +94,11 @@ class UserController extends Controller
         );
         return redirect()->route('users.list');
     }
-    public function delete($id)
-    {
-        $users = User::find($id);
-        if ($users) {
-            $users->delete();
-        }
 
-        return redirect()->back();
-    }
+
+
+
+ 
     public function edit($id)
     {
         $users = Admin::find($id);
@@ -98,8 +108,9 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
-        $users = User::find($id);
+        //dd($request->all());
+        $users = Admin::find($id);
+        //dd($users);
 
         if ($users) {
             $fileName = $users->image;
@@ -112,9 +123,9 @@ class UserController extends Controller
 
 
                 'name' => $request->user_name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'role' => $request->role,
+                //'email' => $request->email,
+               // 'password' => bcrypt($request->password),
+                //'role' => $request->role,
                 'image' => $fileName
 
             ]);

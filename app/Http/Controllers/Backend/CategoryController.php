@@ -16,6 +16,28 @@ class CategoryController extends Controller
     public function categoryForm(){
         return view ('Admin.pages.category.form');
     }
+public function categoryEdit(){
+    return view ('Admin.pages.category.form');
+
+
+}
+
+
+    public function deleteCategory($id){
+        $category = Category::find($id);
+
+    if ($category) {
+        // Perform any additional checks or permissions if needed
+        $category->delete();
+
+        // Redirect back or to a specific route after deletion
+        return redirect()->route('category.list')->with('success', 'Post deleted successfully');
+    } else {
+        // Handle the case where the post is not found
+        return redirect()->route('category.list')->with('error', 'Post not found');
+    }
+
+    }
     public function store(Request $request){
         // $validate = Validator($request->all(),[
         //     'categoryName'=>'requierd',

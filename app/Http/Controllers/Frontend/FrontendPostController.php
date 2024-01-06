@@ -38,51 +38,58 @@ class FrontendPostController extends Controller
     public function mypostUpdate(Request $request, $id)
     {
         $project = Post::find($id);
+        
+        if ($project) {
 
-   
-        $fileName = null;
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('/uploads', $fileName);
-        }
+            $request->validate([
+                'doi' => 'required|numeric|digits:6',
+                // other validation rules for your other fields...
+            ]);
 
-
-        $project->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'author_name' => $request->user_id,
-            'author_affiliation' => $request->author_affiliation,
-            'coauthor_name' => $request->user_id,
-            'coauthor_affiliation' => $request->coauthor_affiliation,
-            'doi' => $request->doi,
-            'reference' => $request->reference_doi ?? null, // Adjust to the actual input field name
-            'researcher_id' => auth()->user()->id,
-            'category_id' => $request->category_id,
-            'file' => $fileName,
-        ]);
-
-        if ($request->reference_doi) {
-            $reference = Post::where('doi', $request->reference_doi)->first();
-            if ($reference) {
-                $reference->increment('citation_count');
+            $fileName = null;
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('/uploads', $fileName);
             }
-        }
+            $project->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'author_name' => $request->user_id,
+                'author_affiliation' => $request->author_affiliation,
+                'coauthor_name' => $request->user_id,
+                'coauthor_affiliation' => $request->coauthor_affiliation,
+                'doi' => $request->doi,
+                'reference' => $request->reference_doi ?? null, // Adjust to the actual input field name
+                'researcher_id' => auth()->user()->id,
+                'category_id' => $request->category_id,
+                'file' => $fileName,
+            ]);
 
-
-        // Check if a reference DOI is provided
-        if ($request->has('reference') && $request->reference !== "") {
-            $referencedPost = Post::where('doi', $request->reference)->first();
-
-            // Increment citation count for the referenced post
-            if ($referencedPost) {
-                $referencedPost->incrementCitationCount();
+            if ($request->reference_doi) {
+                $reference = Post::where('doi', $request->reference_doi)->first();
+                if ($reference) {
+                    $reference->increment('citation_count');
+                }
             }
-        }
 
-        return redirect()->route('researcher.post');
+
+            // Check if a reference DOI is provided
+            if ($request->has('reference') && $request->reference !== "") {
+                $referencedPost = Post::where('doi', $request->reference)->first();
+
+                // Increment citation count for the referenced post
+                if ($referencedPost) {
+                    $referencedPost->incrementCitationCount();
+                }
+            }
+
+            return redirect()->route('researcher.post');
+        }
+        dd($project);
+
     }
-    
+
     public function mypostView($id)
     {
         $project = Post::find($id);
@@ -110,12 +117,7 @@ class FrontendPostController extends Controller
     public function postStore(Request $request)
     {
 
-        // dd($request->all());
 
-        $request->validate([
-            'doi' => 'required|numeric|digits:6',
-            // other validation rules for your other fields...
-        ]);
         $fileName = null;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
@@ -124,12 +126,12 @@ class FrontendPostController extends Controller
         }
 
 
-        $post = Post::create([
+        Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'author_name' => $request->user_id,
             'author_affiliation' => $request->author_affiliation,
-            'coauthor_name' => $request->user_id,
+            'coauthor_name' => $request->coauthor,
             'coauthor_affiliation' => $request->coauthor_affiliation,
             'doi' => $request->doi,
             'reference' => $request->reference_doi ?? null, // Adjust to the actual input field name

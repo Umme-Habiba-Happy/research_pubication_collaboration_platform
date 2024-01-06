@@ -35,11 +35,11 @@
       <td><a href="{{url('/uploads/'. $project->file)}} " target="_blank">{{$project->file}}</a></td>
       <!-- <td>{{$project->file}}</td> -->
       <td>{{$project->status}}</td>
-
       <td>
         <!-- <a class="btn btn-success" href="">Approve</a>
         <a class="btn btn-danger" href="">Reject</a> -->
         <a class="btn btn-warning" href="{{route('project.viewPost', $project->id)}}">View</a>
+        <a class="btn btn-danger" href="">Delete</a>
 
 
       </td>

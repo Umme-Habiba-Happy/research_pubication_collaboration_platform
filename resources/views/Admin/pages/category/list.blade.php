@@ -14,20 +14,25 @@
     </tr>
   </thead>
   <tbody>
-  @foreach($categories as $key=>$category)
+    @foreach($categories as $key=>$category)
 
     <tr>
       <th scope="row">{{$key+1}}</th>
       <td>{{$category->categoryName}}</td>
-      <td>{{$category->categoryDescription}}</td>             
+      <td>{{$category->categoryDescription}}</td>
       <td>
-        <a class="btn btn-success" href="">Edit</a>
-        <a class="btn btn-warning" href="">View</a>
-        <a class="btn btn-danger" href="">Update</a>
-
+        <div class="btn-group" role="group" aria-label="Category Actions">
+          <a class="btn btn-success" href="{{route('category.edit')}}">Edit</a>
+          <a class="btn btn-warning" href="">View</a>
+          <form action="{{ route('category.delete', $category->id) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
       </td>
     </tr>
-  @endforeach
+    @endforeach
   </tbody>
 </table>
 {{$categories ->links() }}

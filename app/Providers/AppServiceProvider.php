@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Researcher;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
@@ -38,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
         {
             $projects =Post::all();
             View::share('projects', $projects);
-        }       
+        }  
+        if(Schema::hasTable('researchers'))
+        {
+            $researchers =Researcher::all();
+            View::share('researchers', $researchers);
+        }      
     }
 }

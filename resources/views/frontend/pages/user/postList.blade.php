@@ -45,6 +45,7 @@
 
 
       <td>
+        <div class="btn-group" role="group" aria-label="Category Actions">
         <a class="btn btn-success" href="{{route('researcher.post.edit',$project->id)}}">Edit</a>
         <a class="btn btn-warning" href="{{route('researcher.post.view',$project->id  )}}">View</a>
         <form action="{{ route('delete.post', ['id' => $project->id]) }}" method="post">
@@ -53,7 +54,7 @@
         <button type="submit" class="btn btn-danger">Delete</button>
     </form>
 
-
+    </div>
 
       </td>    
    </tr>

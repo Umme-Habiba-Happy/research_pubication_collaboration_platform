@@ -18,8 +18,11 @@ return new class extends Migration
             $table->id();
             $table->string('title', 500);
             $table->foreignId('researcher_id')->constrained('researchers');
-            $table->string('description',5000);
+            $table->longText('description');
+
             $table->string('author_name',50);
+
+
             $table->string('coauthor_name');
             $table->string('doi')->unique();
 

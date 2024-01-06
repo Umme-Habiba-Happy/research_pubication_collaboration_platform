@@ -28,7 +28,8 @@
 						<p>Published on: {{ $project->updated_at->format('F j, Y') }} | Total Reads: {{ $project->total_reads }}</p>
 
 						<p>
-							<a href="{{route('author.viewProfile', $project->id)}}">{{ $project->author_name }}</a> ||
+					
+							<a href="{{route('author.viewProfile', $project->user->id)}}">{{$project->author_name}}</a> ||
 							<a href="{{route('author.viewProfile', $project->id)}}">{{ $project->coauthor_name }}</a>
 							<i class="fa fa-flask"></i>
 						</p>

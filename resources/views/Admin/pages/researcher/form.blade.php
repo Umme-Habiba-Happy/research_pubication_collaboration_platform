@@ -4,7 +4,7 @@
   @csrf
   <div class="form-group">
     <label>Enter Name</label>
-    <input  name="researcher_name"  type="text" class="form-control"  placeholder="Enter name">
+    <input  required name="researcher_name"  type="text" class="form-control"  placeholder="Enter name">
  
       @error('researcher_name')
       <div class="alert alert-danger">{{$message}}</div>
@@ -36,19 +36,28 @@
     @enderror
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Affiliation</label>
-    <input required name="affiliation" type="textarea" class="form-control"  placeholder="Enter your affiliation">
-    @error('affiliation')
+    <label for="exampleInputPassword1">Degree</label>
+    <input required name="degree" type="textarea" class="form-control"  placeholder="Enter your degree">
+    @error('degree')
     <div class="alert alert-danger">{{$message}}</div>
     @enderror
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Research Interest</label>
-    <input required name="research_interest" type="textarea" class="form-control" placeholder="write your Research Interest">
-    @error('research_interest')
+    <label for="exampleInputPassword1">Institute</label>
+    <input required name="institute" type="textarea" class="form-control" placeholder="Institute name">
+    @error('institute')
     <div class="alert alert-danger">{{$message}}</div>
     @enderror
   </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Department</label>
+    <input required name="department" type="textarea" class="form-control" placeholder="Enter your department">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPassword1">Skills</label>
+    <input required name="skills" type="textarea" class="form-control" placeholder="Skills">
+    </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection

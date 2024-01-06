@@ -80,6 +80,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 Route::get('/logout', [FrontendUserController::class, 'logout'])->name('user.logout');
 Route::get('/profile', [FrontendUserController::class, 'profile'])->name('Profile');
+
 Route::get('/edit/{id}',[FrontendUserController::class, 'edit'])->name('edit');
 Route::put('/profile/update/{id}',[FrontendUserController::class, 'update'])->name('profile.update');
 Route::get('/profile/profile', [FrontendUserController::class, 'userProfile'])->name('profile.profile');
@@ -87,7 +88,7 @@ Route::get('/profile/research', [FrontendUserController::class, 'userResearch'])
 Route::get('/profile/stats', [FrontendUserController::class, 'stats'])->name('profile.stats');
 Route::delete('/delete/post/{id}', [FrontendUserController::class, 'deletePost'])->name('delete.post');
 
-Route::get('/author/viewProfile{id}', [FrontendUserController::class, 'authorProfile'])->name('author.viewProfile');
+Route::get('/author/viewProfile/{id}', [FrontendUserController::class, 'authorProfile'])->name('author.viewProfile');
 
 Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
 Route::get('/research_under_category/{id}',[FrontendCategoryController::class, 'research_under_category'])->name('research_under_category');
@@ -101,7 +102,7 @@ Route::get('/research_under_category/{id}',[FrontendCategoryController::class, '
 
 Route::get('/mypost', [FrontendPostController::class,'mypostList'])->name('researcher.post');
 Route::get('/mypost/edit/{id}', [FrontendPostController::class, 'mypostEdit'])->name('researcher.post.edit');
-Route::put('/mypost/update/{id}', [FrontendPostController::class, 'mypostUpdate'])->name('researcher.post.update');
+ Route::put('/mypost/update/{id}', [FrontendPostController::class, 'mypostUpdate'])->name('researcher.post.update');
 
 Route::get('/mypost/view/{id}', [FrontendPostController::class,'mypostView'])->name('researcher.post.view');
 
@@ -154,7 +155,6 @@ Route::group(['prefix'=> 'admin'],function(){
 
     Route::get('/users/form',[UserController::class, 'form'])->name('users.form');
     Route::post('/users/store',[UserController::class, 'store'])->name('users.store');
-    Route::get('/users/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
 
@@ -164,6 +164,8 @@ Route::group(['prefix'=> 'admin'],function(){
 
 
     Route::get('/researcher/list', [ResearcherController::class, 'researcher'])->name('researcher.list');
+    Route::delete('/researcher/delete/{id}', [ResearcherController::class, 'researcherDelete'])->name('researcher.delete');
+
     Route::get('/researcher/print', [ResearcherController::class, 'researcherPrint'])->name('researcher.print');
 
     Route::get('/researcher/form', [ResearcherController::class, 'researcherForm'])->name('researcher.form');
@@ -209,6 +211,9 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/category/list', [CategoryController::class, 'category'])->name('category.list');
     Route::get('/category/form', [CategoryController::class, 'categoryForm'])->name('category.form');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/edit', [CategoryController::class, 'categoryEdit'])->name('category.edit');
+
+    Route::delete('/category/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
  });
 
 });

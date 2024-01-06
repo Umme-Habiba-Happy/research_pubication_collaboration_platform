@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Post;
@@ -28,7 +29,6 @@ class PostController extends Controller
     }
     public function store(Request $request){
 
-        //dd($request->all());
             $validate = Validator::make($request->all(),[
                 'title' =>'required',
                 'description' =>'required',
@@ -41,12 +41,9 @@ class PostController extends Controller
             return redirect()->back()->withErrors($validate);
             }
 
-        // dd($request->all());
        Post::create (
         [
             'title' => $request -> title,
-
-
             'description' => $request -> description,
             'researcher_id' =>auth()->user()->id,
             'category_id' => $request -> category_id,
@@ -61,23 +58,21 @@ class PostController extends Controller
     public function viewPost($id){
         $project = Post::find($id);
         
-       //dd($project);
         return view ('Admin.pages.project.viewPost',compact('project'));
     }
     public function postApprove(Request $request, $id){
             $project = Post::find($id);
-            //dd($project);
             $project->update([
-                'status'=>'Approved',
-                'created_at' =>$request->created_at
-            ]);
-            return redirect()->route('project.list');
 
+                'status'=>'Approved',
+
+            ]);
+            //dd($project);
+            return redirect()->route('project.list');
     }
 
     public function postReject(Request $request, $id){
         $project = Post::find($id);
-        // dd($project);
         $project->update([
             'status'=>'Rejected',
         ]);
@@ -87,7 +82,6 @@ class PostController extends Controller
 
 public function comment(Request $request, $id){
     $project = Post::find($id);
-     dd($request->all());
     $project->update([
         'comment'=>$request->comment,
     ]);

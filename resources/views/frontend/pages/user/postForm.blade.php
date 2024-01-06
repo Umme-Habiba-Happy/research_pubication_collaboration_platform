@@ -9,7 +9,7 @@
   </div>
   <div class="form-group">
     <label for="researchDescription">Enter Research Description</label>
-    <textarea class="form-control" name="description" rows="4" maxlength="5000"></textarea>
+    <textarea class="form-control" name="description"></textarea>
   </div>
 
 
@@ -21,16 +21,11 @@
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Author Name </label>
     <select name="user_id" class="form-control" id="">
-      @forelse($users as $user)
-      <option value="{{$user->id}}">{{ $user->name }}</option>
-      @empty
-      <option class="text-center bg-danger" value="">Not found</option>
-      @endforelse
-
+  
+      <option value="{{auth()->user()->name}}">{{ auth()->user()->name }}</option>
+    
     </select>
   </div>
-
-
 
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Author Affiliation</label>
@@ -40,9 +35,9 @@
  
   <div class="form-group">
     <label for="exampleInputEmail1">Enter Co-Author Name </label>
-    <select name="user_id" class="form-control" id="">
+    <select name="coauthor" class="form-control" id="">
       @forelse($users as $user)
-      <option value="{{$user->id}}">{{ $user->name }}</option>
+      <option value="{{$user->name}}">{{ $user->name }}</option>
       @empty
       <option class="text-center bg-danger" value="">Not found</option>
       @endforelse

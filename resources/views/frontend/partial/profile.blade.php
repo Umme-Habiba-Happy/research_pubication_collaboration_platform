@@ -8,10 +8,7 @@
           <div class="mt-5 ">
             <div>
               <hr>
-              <h3>{{auth()->user()->name}}</h3>
-              <h3>{{auth()->user()->degree}}</h3>
-              <h3>{{auth()->user()->institution}}</h3>
-              <h4>{{auth()->user()->country}}</h4>
+              
             </div>
           </div>
           

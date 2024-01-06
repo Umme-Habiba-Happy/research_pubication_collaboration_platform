@@ -67,12 +67,12 @@
                   <hr>
                   <div class="mb-3">
                     <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Author Name:</span>
-                    <span class="btn-gray">{{$project->author_name}}</span>
+                    <span class="btn-gray">{{$project->user->name}}</span>
                   </div>
                   <hr>
                   <div class="mb-3">
                     <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Co-Author Name:</span>
-                    <span class="btn-gray">{{$project->coauthor_name}}</span>
+                    <span class="btn-gray">{{$project->user->name}}</span>
                   </div>
                   <hr>
                   <div class="mb-3">
@@ -103,8 +103,9 @@
           </ul>
         </div>
       </div>
-
+      
       <a class="btn btn-success" href="{{route('project.approve', $project->id)}}">Approve</a>
+
       <a class="btn btn-danger" href="{{route('project.reject', $project->id)}}">Reject</a>
 
 

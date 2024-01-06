@@ -15,6 +15,15 @@ class FrontendUserController extends Controller
 {
     //
  
+    public function authorProfile($id){
+
+        $post= Post::all();
+        $users=User::find($id);
+        
+        return view('frontend.pages.user.researcherProfile',compact('post','users'));
+
+        
+    }
     public function deletePost(Request $request, $id)
 {
     // Validate the request if necessary
