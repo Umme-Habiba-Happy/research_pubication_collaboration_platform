@@ -1,6 +1,6 @@
 @extends('frontend.master')
-@extends('frontend.partial.profile')
 @section('content')
+<x-profile-content></x-profile-content>
 
 <style>
               .research-box {
@@ -48,7 +48,8 @@
             </div>
             <div class="col-md-4">
                 <div class="research-box">
-                    <h3>Recommend</h3>
+                    <h3>Total Citation</h3>
+                    <h4> </h4>
                 </div>
 
             </div>

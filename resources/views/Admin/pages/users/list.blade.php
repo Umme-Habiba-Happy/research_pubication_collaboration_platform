@@ -17,7 +17,6 @@
           <th scope="col">image</th>
           <th scope="col">Action</th>
 
-
         </tr>
       </thead>
       <tbody>
@@ -36,7 +35,7 @@
           <div class="btn-group" role="group" aria-label="Category Actions">
 
             <a class="btn btn-success" href="{{route('users.edit', $item->id)}}">Edit</a>
-            <a class="btn btn-warning" href="">View</a>
+            <a class="btn btn-warning" href="{{route('users.view', $item->id)}}">View</a>
 
 
               <form action="{{ route('users.delete', $item->id) }}" method="post">

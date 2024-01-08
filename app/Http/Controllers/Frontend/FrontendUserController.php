@@ -15,14 +15,28 @@ class FrontendUserController extends Controller
 {
     //
  
-    public function authorProfile($id){
+    public function authorView($id){
 
-        $post= Post::all();
-        $users=User::find($id);
-        
-        return view('frontend.pages.user.researcherProfile',compact('post','users'));
+     
+        $user=User::find($id);
+        //dd($users);
+        return view('frontend.pages.user.researcherProfile',compact('user'));
 
         
+    }
+    public function authorPostView($id){
+        $project = Post::find($id);
+        return view('frontend.pages.user.authorPostView',compact('project'));
+
+    }
+    // 
+    public function  authorResearch($researcher_id){
+//dd($researcher_id);
+
+        $posts= Post::where('researcher_id',$researcher_id)->get();
+        //dd($project);
+//$user = User::find();
+        return view('frontend.pages.user.authorResearch', compact('posts'));
     }
     public function deletePost(Request $request, $id)
 {
@@ -46,8 +60,9 @@ class FrontendUserController extends Controller
     }
     public function stats(){
         //dd('Hello Profile');
-       
-        return view('frontend.pages.user.stats');
+       $projects = Post::all();
+       //dd($projects);
+        return view('frontend.pages.user.stats',compact('projects'));
     }
     
     public function userResearch(){
@@ -62,62 +77,10 @@ class FrontendUserController extends Controller
 
     public function edit($id){
         $users = User::find($id);
-         return view('frontend.pages.user.editProfile',compact('users'));
-         
+         return view('frontend.pages.user.editProfile',compact('users'));         
     }
 
-    // public function mypostList(){
-     
-    //     $projects=Post::where('researcher_id', '=' , auth()->user()->id)->get();
-
-    //     // dd($projects);
-
-    //     return view('frontend.pages.user.postList', compact('projects'));
-    // }
-
-    // public function mypostView($id){
-    //     $project = Post::find($id);
-
-    //     return view('frontend.pages.user.postView',compact('project'));
-    // }
-    // public function postForm(){
-    //     $categories=Category::all();
-
-    //     return view('frontend.pages.user.postForm', compact('categories'));
-    //     return redirect()->route('researcher.post');
-
-    // }
-    // public function resubmit(){
-    //     $categories=Category::all();
-    //     return view('frontend.pages.user.resubmitForm',compact('categories'));
-    //     return redirect()->route('researcher.post');
-
-    // }
-    // public function postStore(Request $request){
-
-    //     // dd($request->all());
-    //     $fileName = null;
-    //     if($request->hasFile('file')){
-    //         $file = $request->file('file');
-    //         $fileName = date('Ymdhis').'.'.$file->getClientOriginalExtension();
-    //         $file->storeAs('/uploads', $fileName);
-    //     }
-    //     //dd($fileName);
-
-    //     //dd($request);
-
-    //     Post::create([
-    //         'title'=>$request->title,
-    //         'description'=>$request->description,
-    //         'researcher_id'=>auth()->user()->id,
-    //         'category_id'=>$request ->category_id,
-    //         'file'=>$fileName
-    //         ]);
-
-        
-    //         return redirect()->route('researcher.post');
-    // }
-
+    
     public function update(Request $request, $id){
         //dd($request->all());
         $users=User::find($id);
@@ -156,7 +119,7 @@ class FrontendUserController extends Controller
             
         ]);    
        // dd($request->all());
-    
+       notify()->success('User Update Successfully!');    
         return redirect()->route('Profile');
     }
 
@@ -228,7 +191,7 @@ class FrontendUserController extends Controller
     }
 
 
-
+  
          
 
      }

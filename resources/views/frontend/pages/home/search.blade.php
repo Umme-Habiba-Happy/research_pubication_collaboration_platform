@@ -24,18 +24,13 @@
 							<a href="{{ url('/uploads/' . $project->file) }}" target="_blank">{{ $project->file }}</a>
 						</span>
 						<!-- Display Published Date if available -->
-						@if($project->published_date)
-						<p>Published on: {{ $project->published_date->format('F j, Y') }} | Total Reads: {{ $project->total_reads }}</p>
-						@else
-						<p>Publication date not available | Total Reads: {{ $project->total_reads }}</p>
-						@endif
-						<p>{{$project->author_name}}||{{ $project->coauthor_name }} <i class="fa fa-flask"></i></p>
+						<p>Published on: {{ $project->updated_at->format('F j, Y') }} </p>
+
 
 						<!-- Download button -->
 						<form method="get" action="{{ url('/download/' . $project->file) }}">
 							@csrf
 							<a class="btn btn-success" href="{{route('single.research.download', $project->id)}}">Download </a>
-							<button class="btn btn-success text-dark mr-2">Recommend</button>
 							<a href="#" class="btn btn-info text-dark">Share</a>
 						</form>
 

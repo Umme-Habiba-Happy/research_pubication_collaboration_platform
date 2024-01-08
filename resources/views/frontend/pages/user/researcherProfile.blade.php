@@ -1,5 +1,4 @@
 @extends('frontend.master')
-@extends('frontend.partial.profile')
 @section('content')
 
 
@@ -8,10 +7,8 @@
 
   <div>
 	<ul class="nav navbar-nav">			
-
-		<li><a  href="{{route('profile.profile',)}}">Profile</a></li>
-		<li><a href="{{route('profile.research')}}">Research</a></li>
-		<li><a href="{{route('profile.stats')}}">Stats</a></li>
+<!-- dd($users) -->
+		<li><a class="btn btn-success" href="{{route('author.Research',$user->id )}}">Research</a></li>
 
 
 	</ul>
@@ -24,7 +21,7 @@
             <h5 class="mb-0">Full Name</h5>
           </div>
           <div class="col-sm-6 text-secondary">
-            <h4>{{auth()->user()->name}}</h4>
+            <h4>{{$user->name}}</h4>
           </div>
         </div>
         <hr>
@@ -33,7 +30,7 @@
             <h5 class="mb-0">Email</h5>
           </div>
           <div class="col-sm-6 text-secondary">
-            <h4>{{auth()->user()->email}}</h4>
+            <h4>{{$user->email}}</h4>
           </div>
         </div>
         <hr>
@@ -115,17 +112,5 @@
           </div>
         </div>
         <hr>
-        <div class="row">
-          <div class="col-sm-12">
-            <a class="btn btn-info " href="{{route('edit', auth()->user()->id)}}">Edit</a>
-
-            <a class="btn btn-info " href="{{route('researcher.post', auth()->user()->id)}}">My Post</a>
-          </div>
-        </div>
-
-      </div> 
-
-
-
 
       @endsection

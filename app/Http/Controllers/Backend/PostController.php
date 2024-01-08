@@ -18,7 +18,7 @@ class PostController extends Controller
     }
     public function project(){
 
-        $projects=Post::with('category','user')->paginate(10);
+        $projects=Post::with('category','user')->paginate(7);
         return view ('Admin.pages.project.list',compact('projects'));
     }
     public function projectForm(){
@@ -59,6 +59,12 @@ class PostController extends Controller
         $project = Post::find($id);
         
         return view ('Admin.pages.project.viewPost',compact('project'));
+    }
+
+    public function delete($id){
+
+        Post::find($id)->delete();
+    
     }
     public function postApprove(Request $request, $id){
             $project = Post::find($id);

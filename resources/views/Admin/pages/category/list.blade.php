@@ -9,8 +9,6 @@
       <th scope="col">Name</th>
       <th scope="col">Description</th>
       <th scope="col">Action</th>
-
-
     </tr>
   </thead>
   <tbody>
@@ -22,13 +20,13 @@
       <td>{{$category->categoryDescription}}</td>
       <td>
         <div class="btn-group" role="group" aria-label="Category Actions">
-          <a class="btn btn-success" href="{{route('category.edit')}}">Edit</a>
-          <a class="btn btn-warning" href="">View</a>
-          <form action="{{ route('category.delete', $category->id) }}" method="post">
+          <a class="btn btn-success" href="{{route('category.edit', $category->id)}}">Edit</a>
+          <a class="btn btn-warning" href="{{route('category.view', $category->id)}}">View</a>
+          <!-- <form action="{{ route('category.delete', $category->id) }}" method="post">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
+          </form> -->
         </div>
       </td>
     </tr>

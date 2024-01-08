@@ -16,7 +16,7 @@
 					<h4> DOI: {{$project->doi}}</h4>
 					<hr>
 					<p>Published on: {{ $project->updated_at->format('F j, Y') }} </p>
-					<p>Total Reads: {{$total_reads}} || Total Citation: </p>
+					<p>Total Reads: {{$total_reads}} || Total Citation:{{$project->citation_count}} </p>
 
 					
 					<div class="mb-3">
@@ -28,16 +28,14 @@
 					
 					
 						
-						<p>{{$project->author_name}}||{{ $project->coauthor_name }} <i class="fa fa-flask"></i></p>
+						<p><a href="{{route('author.view', $project->researcher_id)}}">{{$project->author_name}}</a>
+							
+							<i class="fa fa-flask"></i></p>
 
 						<!-- Download button -->
 						<form method="get" action="{{ url('/download/' . $project->file) }}">
 							@csrf
 							<a class="btn btn-success" href="{{route('single.research.download', $project->id)}}">Download ({{$count}})</a>
-							<form method="post" action="{{ route('recommend', $project->id) }}">
-								@csrf
-								<button type="submit" class="btn btn-success text-dark mr-2">Recommend</button>
-							</form>
 
 							 <a href="mailto:?subject=Subject%20of%20the%20email&body=Here%20is%20the%20link%20to%20the%20file:%20{{ url('/uploads/' . $project->file) }}" class="btn btn-info text-dark">Share</a>
 						</form>

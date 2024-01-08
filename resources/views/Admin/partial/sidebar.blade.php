@@ -11,7 +11,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Admins
                             </a>
-                         
+                            <a class="nav-link" href="{{route('category.list')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Category
+                            </a>
                             
                             
                             <a class="nav-link" href="{{route('researcher.list')}}">
@@ -22,10 +25,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Research Project
                             </a>
-                            <a class="nav-link" href="{{route('category.list')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Category
-                            </a>
+                           
                             <!-- <a class="nav-link" href="{{route('report.list')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Report

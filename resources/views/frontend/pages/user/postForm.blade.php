@@ -9,7 +9,8 @@
   </div>
   <div class="form-group">
     <label for="researchDescription">Enter Research Description</label>
-    <textarea class="form-control" name="description"></textarea>
+    <input required name="description" type="text" class="form-control" placeholder="Enter Description">
+
   </div>
 
 
@@ -51,13 +52,13 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Enter DOI</label>
-    <input name="doi" type="text" class="form-control" placeholder="Enter DOI">
+    <input name="doi" type="number" class="form-control" placeholder="Enter DOI">
   </div>
 
 
   <div class="form-group">
     <label for="reference_doi">Reference DOI</label>
-    <input name="reference_doi" type="text" class="form-control" placeholder="Enter Reference DOI">
+    <input name="reference_doi" type="number" class="form-control" placeholder="Enter Reference DOI">
   </div>
 
   <!-- Your other form fields -->
@@ -84,7 +85,7 @@
   </div>
 
 
-
+<hr>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

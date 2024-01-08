@@ -88,17 +88,15 @@ Route::get('/profile/research', [FrontendUserController::class, 'userResearch'])
 Route::get('/profile/stats', [FrontendUserController::class, 'stats'])->name('profile.stats');
 Route::delete('/delete/post/{id}', [FrontendUserController::class, 'deletePost'])->name('delete.post');
 
-Route::get('/author/viewProfile/{id}', [FrontendUserController::class, 'authorProfile'])->name('author.viewProfile');
+Route::get('/author/view/{id}', [FrontendUserController::class, 'authorView'])->name('author.view');
+Route::get('/author/Profile/{id}', [FrontendUserController::class, 'authorProfile'])->name('author.profile');
+Route::get('/author/Research/{id}', [FrontendUserController::class, 'authorResearch'])->name('author.Research');
+Route::get('/author/PostView/{id}', [FrontendUserController::class, 'authorPostView'])->name('author.post.view');
 
 Route::get('/category/list',[FrontendCategoryController::class, 'category'])->name('category');
 Route::get('/research_under_category/{id}',[FrontendCategoryController::class, 'research_under_category'])->name('research_under_category');
 
-// Route::get('/mypost', [FrontendUserController::class,'mypostList'])->name('researcher.post');
-// Route::get('/mypost/view/{id}', [FrontendUserController::class,'mypostView'])->name('researcher.post.view');
 
-// Route::get('/mypost/form', [FrontendUserController::class,'postForm'])->name('researcher.post.form');
-// Route::post('/mypost/store', [FrontendUserController::class,'postStore'])->name('researcher.postStore');
-// Route::get('/resubmit/form', [FrontendUserController::class,'resubmit'])->name('resubmit.form');
 
 Route::get('/mypost', [FrontendPostController::class,'mypostList'])->name('researcher.post');
 Route::get('/mypost/edit/{id}', [FrontendPostController::class, 'mypostEdit'])->name('researcher.post.edit');
@@ -124,8 +122,10 @@ Route::get('/singleView/overview{id}', [FrontendResearchController::class, 'sing
 Route::get('/singleView/stats/{id}', [FrontendResearchController::class, 'singleResearchStats'])->name('singleview.stats');
 
 Route::get('/singleView/comment{id}', [FrontendResearchController::class, 'singleViewComment'])->name('singleview.comment');
-Route::get('/singleView/cite{id}', [FrontendResearchController::class, 'singleViewCite'])->name('singleview.cite');
+Route::get('/singleView/cite/{id}', [FrontendResearchController::class, 'singleViewCite'])->name('singleview.cite');
+
 Route::get('/research' , [FrontendResearchController::class, 'research'])->name('research');
+
 Route::get('/researchComment' , [FrontendResearchController::class, 'researchComment'])->name('researchComment');
 
 Route::post('/research/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
@@ -151,6 +151,8 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/', [HomeController::class,'home'])->name('dashboard');
 
     Route::get('/users/list' , [ UserController::class, 'list'])->name('users.list');
+    Route::get('/users/view/{id}' , [ UserController::class, 'view'])->name('users.view');
+
     Route::delete('/users/delete/{id}', [UserController::class, 'deleteAdmin'])->name('users.delete');
 
     Route::get('/users/form',[UserController::class, 'form'])->name('users.form');
@@ -172,14 +174,9 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::post('/researcher/store', [ResearcherController::class, 'store'])->name('researcher.store');
     Route::get('/researcher/edit/{id}', [ResearcherController::class, 'edit'])->name('researcher.edit');
     Route::put('/researcher/update/{id}', [ResearcherController::class, 'update'])->name('researcher.update');
+    Route::get('/researcher/view/{id}', [ResearcherController::class, 'view'])->name('researcher.view');
 
-    // Route::get('/project/list', [ProjectController::class, 'project'])->name('project.list');
-    // Route::get('/project/form', [ProjectController::class, 'projectForm'])->name('project.form');
-    // Route::post('/project/store', [ProjectController::class, 'store'])->name('project.store');
-    // Route::get('/project/view/{id}', [ProjectController::class, 'viewPost'])->name('project.viewPost');
-    // Route::get('/project/approve/{id}', [ProjectController::class, 'postApprove'])->name('project.approve');
-    // Route::get('/project/reject/{id}', [ProjectController::class, 'postReject'])->name('project.reject');
-    // Route::get('/project/comment/{id}', [ProjectController::class, 'comment'])->name('project.comment');
+
     Route::get('/project/print', [PostController::class, 'projectPrint'])->name('project.print');
 
     Route::get('/project/list', [PostController::class, 'project'])->name('project.list');
@@ -189,9 +186,7 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/project/approve/{id}', [PostController::class, 'postApprove'])->name('project.approve');
     Route::get('/project/reject/{id}', [PostController::class, 'postReject'])->name('project.reject');
     Route::get('/project/comment/{id}', [PostController::class, 'comment'])->name('project.comment');
-
-
-
+    Route::delete('/project/delete/{id}', [PostController::class, 'delete'])->name('project.delete');
 
 
     Route::get('/paper/print', [PaperController::class, 'paperPrint'])->name('paper.print');
@@ -204,15 +199,12 @@ Route::group(['prefix'=> 'admin'],function(){
     Route::get('/report/form', [ReportController::class, 'reportForm'])->name('report.form');
     Route::post('/report/store', [ReportController::class, 'store'])->name('report.store');
    
-   //  Route::get('/sponsor/list', [SponsorController::class, 'sponsor'])->name('sponsor.list');
-   //  Route::get('/sponsor/form', [SponsorController::class, 'sponsorForm'])->name('sponsor.form');
-   //  Route::post('/sponsor/store', [SponsorController::class, 'store'])->name('sponsor.store');
-   
     Route::get('/category/list', [CategoryController::class, 'category'])->name('category.list');
     Route::get('/category/form', [CategoryController::class, 'categoryForm'])->name('category.form');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/category/edit', [CategoryController::class, 'categoryEdit'])->name('category.edit');
-
+    Route::get('/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
+    Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/category/view/{id}', [CategoryController::class, 'categoryView'])->name('category.view');
     Route::delete('/category/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
  });
 

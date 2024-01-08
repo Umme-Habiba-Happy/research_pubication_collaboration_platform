@@ -102,6 +102,8 @@ class FrontendResearchController extends Controller
             $project->publishedDate = Carbon::parse($project->published_date)->format('F j, Y');
         });
         // dd($projects);
+        
+        
         return view("frontend.pages.researches.research", compact('projects'));
     }
     

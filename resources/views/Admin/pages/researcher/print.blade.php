@@ -13,7 +13,7 @@
         }
     </style>
 
-    <table class="table table-light">
+    <table class="table table-light ">
         <thead>
             <tr>
                 <th scope="col">#ID</th>
@@ -21,7 +21,6 @@
                 <th scope="col">Email</th>
                 <th scope="col">Degree</th>
                 <th scope="col">Image</th>
-                <th scope="col">Research Interest</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +33,6 @@
                 <td class="col">
                     <img class="rounded-circle" width="20%" src="{{url('/uploads/'. $researcher->image)}} " alt="image">
                 </td>
-                <td class="col">{{$researcher->research_interest}}</td>
 
             </tr>
             @endforeach

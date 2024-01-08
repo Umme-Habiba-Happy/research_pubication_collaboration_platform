@@ -19,10 +19,12 @@ class ResearcherController extends Controller
         $researchers= User::where('role' , 'researcher')->paginate(5);
        return view ('Admin.pages.researcher.list', compact('researchers'));
     }
+    public function view($id){
+        $researcher = User::find($id);
+        return view('Admin.pages.researcher.view', compact('researcher'));
+    }
 
     public function researcherDelete($id){
-
-
 
     $user = User::find($id);
 
@@ -121,7 +123,9 @@ class ResearcherController extends Controller
              'degree'=>$request->degree,
              'department'=>$request->department,
              'institution' => $request ->institution,
-             'skills' => $request ->skills
+             'skills' => $request ->skills,
+             'image' => $fileName
+
   
              ]);
  

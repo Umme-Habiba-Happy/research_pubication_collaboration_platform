@@ -1,64 +1,115 @@
-<section id="footer">
-	<div class="container">
-		<div class="row">
-			<div class="footer clearfix">
-				<div class="col-sm-6">
-					<div class="footer_left">
-						<h2><a href="index.html"><i class="fa fa-flask"></i>ScholarLink</a></h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> Praesent libero Sed nisi Nulla quis sem at nibh<br> elementum imperdiet.</p>
-						<p>Class aptent taciti sociosqu ad litora torquent per<br> conubia nostra, per inceptos himenaeos.<br> Curabitursodales ligula in libero!
-							<br> Praesent libero Sed nisi Nulla quis sem at nibh<br> conubia nostra, per inceptos himenaeos.
-						</p>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="footer_middle">
-						<h2>Contact Us</h2>
-						<h5>Sector 10, Uttara<br>
-							Dhaka 1230</h5>
-						<h4><a href="#">scholarlink@gmail.com</a></h4>
-						<h5>Tel: <a href="#">+880 1993403311</a></h5>
-						<h5>Fax: <a href="#">+880 1934434443</a></h5>
-						<div class="footer_middle_inner clearfix">
-							<p>Email us</p>
-							<p>More Scientific contacts</p>
-							<p>Another Details</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="footer_right">
-						<h2>Follow us</h2>
-						<div class="top_right">
-							<p>
-								<a class="tag_1" href="#"><i class="fa fa-facebook"></i></a>
-								<a class="tag_2" href="#"><i class="fa fa-twitter"></i></a>
-								<a class="tag_3" href="#"><i class="fa fa-google-plus"></i></a>
-								<a class="tag_4 marg_right" href="#"><i class="fa fa-linkedin"></i></a>
-							</p>
-						</div>
-						<h2>Popular</h2>
-						<div class="footer_middle_inner clearfix">
-							<p><a href="index.html">Home</a></p>
-							<p><a href="gallery.html">Gallery</a></p>
-							<p><a href="about.html">About</a></p>
-							<p><a href="contact.html">Contact</a></p>
-							<p><a href="blog.html">Blogs</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
-<section id="footer_bottom">
-	<div class="container">
-		<div class="col-sm-12">
-			<div class="footer_bottom">
-				<p> © 2013 ScholarLink. All Rights Reserved </a></p>
-			</div>
-		</div>
-	</div>
+        .footer {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
 
-</section>
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons li {
+            margin-right: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Your website content goes here -->
+
+    <div class="footer">
+        <ul class="social-icons">
+            <li><a href="#" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <!-- Add more social media icons as needed -->
+        </ul>
+
+        <p>&copy; 2024 ScholarLink. All rights reserved.</p>
+    </div>
+
+    <!-- Add Font Awesome CDN for social media icons -->
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+<!-- ======= Footer =======
+<footer id="footer" class="footer">
+
+    <div class="container">
+        <div class="row gy-3">
+            <div class="col-lg-3 col-md-6 d-flex">
+                <i class="bi bi-geo-alt icon"></i>
+                <div>
+                    <h4>Address</h4>
+                    <p>
+                        Sector-11, Uttara, Dhaka<br>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links d-flex">
+                <i class="bi bi-telephone icon"></i>
+                <div>
+                    <p>
+                        <strong>Phone:</strong>01635746591<br>
+                        <strong>Email:</strong> shantaisalam@gmail.com<br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links d-flex">
+                <i class="bi bi-clock icon"></i>
+                <div>
+                    <h4>Opening Hours</h4>
+                    <p>
+                        <strong>Mon-Sun: 10AM</strong> - 6PM<br>
+                        Friday: Closed
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 footer-links">
+                <h4>Follow Us</h4>
+                <div class="social-links d-flex">
+                    <a href="https://www.facebook.com/shantaislamhimu.himu?mibextid=ZbWKwL" class="facebook" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/shanta_islam_himu/" class="instagram" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</footer> -->

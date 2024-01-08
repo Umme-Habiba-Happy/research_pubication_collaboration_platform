@@ -86,8 +86,28 @@
                   </div>
                   <hr>
                   <div class="mb-3">
-                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">DOI</span>
+                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">DOI :</span>
                     <span class="btn-gray">{{$project->doi}}</span>
+                  </div>
+                  <hr>
+                  <div class="mb-3">
+                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0 ">Refernce DOI :</span>
+                    <span class="btn-gray">{{$project->reference}}</span>
+                  </div>
+                  <hr>
+                  <div class="mb-3">
+                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0 ">Citation :</span>
+                    <span class="btn-gray">{{$project->citation_count}}</span>
+                  </div>
+                  <hr>
+                  <div class="mb-3">
+                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0 ">Download:</span>
+                    <span class="btn-gray">{{$count}}</span>
+                  </div>
+                  <hr>
+                  <div class="mb-3">
+                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0 ">Read:</span>
+                    <span class="btn-gray">{{$total_reads}}</span>
                   </div>
                   <hr>
                   <div class="mb-3">
@@ -119,12 +139,15 @@
     <div class="col-sm-6">
 
 
-      <h4>Feedback:</h4>
+      <h4>Feedback: from Admin</h4>
       <form action="{{route('project.comment', $project->id)}}" role="form">
         <div class="form-group">
-          <textarea name='comment' class="form-control" rows="5" required>{{$project->comment}}</textarea>
+          <h3>{{$project->comment}}</h3>
+        
         </div>
       </form>
+      <hr>
+      <hr>
       <br><br>
 
       <h4>All Comments:</h4>
@@ -142,7 +165,6 @@
                     <h3>{{ $comment->user->name }}</h3>
                 </div>
                 <p>{{ $comment->comment }}</p>
-                <p>citation</p>
             </div>
         </li>
         @endif

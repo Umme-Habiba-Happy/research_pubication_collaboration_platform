@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
   <h1>Researcher</h1>
-  <a href="{{route('researcher.form')}}" class="btn btn-info">Enter New Researcher</a>
+  <!-- <a href="{{route('researcher.form')}}" class="btn btn-info">Enter New Researcher</a> -->
   <a href="{{route('researcher.print')}}" class="btn btn-danger">Print</a>
 
   <table class="table table-light">
@@ -28,7 +28,7 @@
         </td>
         <td class="col-3">
           <div class="btn-group" role="group" aria-label="Category Actions">
-            <a class="btn btn-info" href="">View</a>
+            <a class="btn btn-info" href="{{route('researcher.view', $researcher->id)}}">View</a>
 
             <a class="btn btn-success" href="{{route('researcher.edit', $researcher->id)}}">Edit</a>
 

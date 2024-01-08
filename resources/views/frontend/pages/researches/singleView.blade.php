@@ -37,7 +37,8 @@
 </nav>
 
 <tr>
- 
+ <h3>Abstract</h3>
+ <hr>
     <td>{{$project->description}}</</td>
   
  </tr>

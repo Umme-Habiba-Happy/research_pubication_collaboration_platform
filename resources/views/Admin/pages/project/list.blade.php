@@ -1,7 +1,7 @@
 @extends('Admin.master')
 @section('content')
 <h1>Project</h1>
-<a class="btn btn-info" href="{{route('project.form')}}">Create Project</a>
+<!-- <a class="btn btn-info" href="{{route('project.form')}}">Create Project</a> -->
 <a class="btn btn-danger" href="{{route('project.print')}}">Print</a>
 
 <table class="table table-dark">
@@ -39,11 +39,12 @@
         <!-- <a class="btn btn-success" href="">Approve</a>
         <a class="btn btn-danger" href="">Reject</a> -->
         <a class="btn btn-warning" href="{{route('project.viewPost', $project->id)}}">View</a>
-        <a class="btn btn-danger" href="">Delete</a>
-
-
+        <!-- <form action="{{route('project.delete', $project->id)}}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form> -->
       </td>
-
 
     </tr>
     @endforeach

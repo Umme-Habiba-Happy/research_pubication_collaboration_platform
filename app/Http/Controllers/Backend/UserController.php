@@ -44,16 +44,16 @@ class UserController extends Controller
         return view("Admin.pages.users.list", compact('users'));
     }
 
-  
+
 
     public function deleteAdmin($id)
     {
         $user = Admin::find($id);
-    
+
         if ($user) {
             // Perform any additional checks or permissions if needed
             $user->delete();
-    
+
             // Redirect back or to a specific route after deletion
             return redirect()->route('users.list')->with('success', 'user deleted successfully');
         } else {
@@ -98,14 +98,19 @@ class UserController extends Controller
 
 
 
- 
+
     public function edit($id)
     {
         $users = Admin::find($id);
         return view('admin.pages.users.editForm', compact('users'));
         return redirect()->back();
     }
+    public function view($id)
+    {
+        $users = Admin::find($id);
+        return view('admin.pages.users.view', compact('users'));
 
+    }
     public function update(Request $request, $id)
     {
         //dd($request->all());
@@ -124,7 +129,7 @@ class UserController extends Controller
 
                 'name' => $request->user_name,
                 //'email' => $request->email,
-               // 'password' => bcrypt($request->password),
+                // 'password' => bcrypt($request->password),
                 //'role' => $request->role,
                 'image' => $fileName
 

@@ -15,17 +15,14 @@
 
    </ul>
 </nav>
-This is overView
-@foreach($projects as $key=>$project)
 
 <tr>
- 
+ <h3>Abstract</h3>
+ <hr>
     <td>{{$project->description}}</</td>
 
     </td>    
  </tr>
-
-@endforeach
 
 
 

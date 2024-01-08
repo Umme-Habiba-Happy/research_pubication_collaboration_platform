@@ -1,17 +1,15 @@
 @extends('frontend.master')
-@extends('frontend.partial.profile')
 @section('content')
-
+<x-profile-content></x-profile-content>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
  
-
  <div>
    <ul class="nav navbar-nav">			
 
        <li><a  href="{{route('profile.profile')}}">Profile</a></li>
        <li><a href="{{route('profile.research')}}">Research</a></li>
-       <li><a href="{{route('profile.stats')}}">Stats</a></li>
+       <!-- <li><a href="{{route('profile.stats')}}">Stats</a></li> -->
 
 
    </ul>
