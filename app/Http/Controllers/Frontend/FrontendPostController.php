@@ -22,6 +22,8 @@ class FrontendPostController extends Controller
     {
         $projects = Post::where('researcher_id', '=', auth()->user()->id)->get();
         $users = User::all();
+        // $projects = Post::OrderBy('id', 'DESC')->get();
+        // dd($projects);
         // dd($projects);
         return view('frontend.pages.user.postList', compact('projects', 'users'));
     }
@@ -39,25 +41,25 @@ class FrontendPostController extends Controller
     public function mypostUpdate(Request $request, $id)
     {
         $project = Post::find($id);
-
+//dd($request->all());
         if ($project) {
 
-            $validate = Validator::make($request->all(), [
-                'title' => 'required|string|max:255',
-                'description' => 'required|string',
-                'user_id' => 'required|exists:users,id',
-                'author_affiliation' => 'required|string',
-                'coauthor' => 'required|string',
-                'coauthor_affiliation' => 'required|string',
-                'doi' => 'required|numeric|digits:6|unique|min:0',
-                'reference_doi' => 'nullable|numeric|digits:6|exists:posts,doi',
-                'category_id' => 'required|exists:categories,id',
-                'file' => 'required', // Adjust allowed file types as needed
-            ]);
+            // $validate = Validator::make($request->all(), [
+            //     'title' => 'required|string|max:255',
+            //     'description' => 'required|string',
+            //     'user_id' => 'required|exists:users,id',
+            //     'author_affiliation' => 'required|string',
+            //     'coauthor' => 'required|string',
+            //     'coauthor_affiliation' => 'required|string',
+            //     'doi' => 'required|digits:6|unique|min:0',
+            //     'reference_doi' => 'nullable|numeric|digits:6|exists:posts,doi',
+            //     'category_id' => 'required|exists:categories,id',
+            //     'file' => 'required', // Adjust allowed file types as needed
+            // ]);
 
-            if ($validate->fails()) {
-                return redirect()->back()->withErrors($validate);
-            }
+            // if ($validate->fails()) {
+            //     return redirect()->back()->withErrors($validate);
+            // }
 
             $fileName = null;
             if ($request->hasFile('file')) {
@@ -70,7 +72,7 @@ class FrontendPostController extends Controller
                 'description' => $request->description,
                 'author_name' => $request->user_id,
                 'author_affiliation' => $request->author_affiliation,
-                'coauthor_name' => $request->user_id,
+                'coauthor_name' => $request->coauthor,
                 'coauthor_affiliation' => $request->coauthor_affiliation,
                 'doi' => $request->doi,
                 'reference' => $request->reference_doi ?? null, // Adjust to the actual input field name
@@ -93,7 +95,6 @@ class FrontendPostController extends Controller
                     $referencedPost->incrementCitationCount();
                 }
             }
-
             return redirect()->route('researcher.post');
         }
         //dd($project);
@@ -130,23 +131,23 @@ class FrontendPostController extends Controller
     public function postStore(Request $request)
     {
         
-        //try {
-            // $validate = Validator::make($request->all(), [
-            //     'title' => 'required|string',
-            //     'description' => 'required|string',
-            //     'user_id' => 'required|exists:users,id',
-            //     'author_affiliation' => 'required|string',
-            //     'coauthor' => 'required|string',
-            //     'coauthor_affiliation' => 'required|string',
-            //     'doi' => 'required|numeric|digits:6|unique',
-            //     'reference_doi' => 'nullable|numeric|digits:6|exists:posts,doi',
-            //     'category_id' => 'required|exists:categories,id',
-            //     'file' => 'required', // Adjust allowed file types as needed
-            // ]);
-            // if ($validate->fails()) {
-            //     notify()->success('unAuthorise User');
-            //     return redirect()->back()->withErrors($validate);
-            // }
+        
+        //     $validate = Validator::make($request->all(), [
+        //         'title' => 'required|string',
+        //         'description' => 'required|string',
+        //         'user_id' => 'required|exists:users,id',
+        //         'author_affiliation' => 'required|string',
+        //         'coauthor' => 'required|string',
+        //         'coauthor_affiliation' => 'required|string',
+        //         'doi' => 'required|numeric|min:6|max:6',
+        //         'reference_doi' => 'nullable|numeric|digits:6|exists:posts,doi',
+        //         'category_id' => 'required|exists:categories,id',
+        //         'file' => 'required', // Adjust allowed file types as needed
+        //     ]);
+        //     if ($validate->fails()) {
+        //         notify()->success('unAuthorise User');
+        //         return redirect()->back()->withErrors($validate);
+        //     }
 
 
             $fileName = null;
@@ -168,13 +169,7 @@ class FrontendPostController extends Controller
                 'category_id' => $request->category_id,
                 'file' => $fileName,
             ]);
-        // } catch (Exception $messageexception) {
-
-        //     return response()->json([
-        //         'message' => $messageexception->getMessage()
-        //     ]);
-        // }
-
+      
         if ($request->reference_doi) {
             $reference = Post::where('doi', $request->reference_doi)->first();
             if ($reference) {

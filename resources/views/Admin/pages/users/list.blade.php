@@ -7,7 +7,7 @@
 
     <h1>ADMIN</h1>
     <a class="btn btn-info col-2" type="button" href="{{route('users.form')}}">Enter New Admin</a>
-    <table class="table table-dark">
+    <table class="table table-light">
       <thead>
         <tr>
           <th scope="col">#id</th>

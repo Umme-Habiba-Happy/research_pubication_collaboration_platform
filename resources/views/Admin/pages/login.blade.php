@@ -37,7 +37,11 @@
                     <input required name="email" type="email" id="form2Example17" class="form-control form-control-lg" />
                     <label  class="form-label" for="form2Example17">Email address</label>
                  
+    @error('email')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
                 </div>
+
 
                   <div class="form-outline mb-4">
                     <input required name="password" type="password" id="form2Example27" class="form-control form-control-lg" />

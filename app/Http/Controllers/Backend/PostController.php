@@ -19,6 +19,8 @@ class PostController extends Controller
     public function project(){
 
         $projects=Post::with('category','user')->paginate(7);
+        // $projects = Post::OrderBy('id', 'DESC')->get();
+        // dd($projects);
         return view ('Admin.pages.project.list',compact('projects'));
     }
     public function projectForm(){

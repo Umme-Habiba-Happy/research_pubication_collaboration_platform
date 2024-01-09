@@ -1,8 +1,8 @@
 @extends('Admin.master')
 @section('content')
-<h1>category</h1>
+<h1>Category</h1>
 <a class="btn btn-info" href="{{route('category.form')}}">Create Category</a>
-<table class="table table-dark">
+<table class="table table-light">
   <thead>
     <tr>
       <th scope="col">#id</th>

@@ -15,7 +15,7 @@
     <input required name="password"  type="password" class="form-control" id="exampleInputEmail1"  placeholder="Enter pass">
 
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary text-dark">Login</button>
 
 </form>
 @endsection

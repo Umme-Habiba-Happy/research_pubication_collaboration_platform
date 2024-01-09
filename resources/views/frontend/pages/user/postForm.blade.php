@@ -52,13 +52,13 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Enter DOI</label>
-    <input name="doi" type="number" class="form-control" placeholder="Enter DOI">
+    <input name="doi" type="string" class="form-control" placeholder="Enter DOI">
   </div>
 
 
   <div class="form-group">
     <label for="reference_doi">Reference DOI</label>
-    <input name="reference_doi" type="number" class="form-control" placeholder="Enter Reference DOI">
+    <input name="reference_doi" type="string" class="form-control" placeholder="Enter Reference DOI">
   </div>
 
   <!-- Your other form fields -->

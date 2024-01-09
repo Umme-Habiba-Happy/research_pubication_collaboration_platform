@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -19,7 +20,14 @@ class UserController extends Controller
     {
         //dd($request->all());
         //validate
+        $validate = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required'
 
+        ]);
+        if($validate->fails()){
+            return redirect()->back()->withErrors($validate);
+        }
 
         //migration table
 
@@ -27,6 +35,7 @@ class UserController extends Controller
         $login = auth()->guard('admin')->attempt($credentials);
         if ($login) {
             return redirect()->route('dashboard');
+
         }
         return redirect()->back()->withErrors("invalid ");
     }

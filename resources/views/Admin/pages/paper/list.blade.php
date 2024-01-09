@@ -1,8 +1,8 @@
 @extends('Admin.master')
 @section('content')
-<h1>Paper</h1>
-<a class="btn btn-info" href="{{route('paper.form')}}">Add Paper</a>
-<a class="btn btn-info" href="{{route('paper.print')}}">Print</a>
+<h1>Publication</h1>
+<a class="btn btn-info" href="{{route('paper.form')}}">Add Publication</a>
+<a class="btn btn-danger" href="{{route('paper.print')}}">Print</a>
 
 <table class="table">
   <thead class="thead-light">

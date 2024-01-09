@@ -74,7 +74,7 @@ class CategoryController extends Controller
                 'categoryDescription' => $request->category_description
             ]
         );
-        notify()->success('Category Created sUCCESFULLY');
+        notify()->success('Category Created Successfully');
         return redirect()->route('category.list');
 
     }

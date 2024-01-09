@@ -101,7 +101,7 @@ class FrontendResearchController extends Controller
         $projects->each(function ($project) {
             $project->publishedDate = Carbon::parse($project->published_date)->format('F j, Y');
         });
-        // dd($projects);
+         //git statdd($projects);
         
         
         return view("frontend.pages.researches.research", compact('projects'));

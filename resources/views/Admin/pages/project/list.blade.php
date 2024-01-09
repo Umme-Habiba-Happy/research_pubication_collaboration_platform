@@ -4,7 +4,7 @@
 <!-- <a class="btn btn-info" href="{{route('project.form')}}">Create Project</a> -->
 <a class="btn btn-danger" href="{{route('project.print')}}">Print</a>
 
-<table class="table table-dark">
+<table class="table table-light">
   <thead>
     <tr>
       <th scope="col">#id</th>
